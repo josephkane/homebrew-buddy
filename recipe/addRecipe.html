@@ -8,7 +8,7 @@
 		<label>Description:</label>
 		<input type="text" ng-model="addCtrl.description">
 		<label>Style:</label>
-		<select ng-model="addCtrl.style" ng-options="style.shortName for style in addCtrl.styles">
+		<select ng-model="addCtrl.style" ng-options="style.shortName for style in addCtrl.stylesArray">
 		</select>
 		<label>Target OG:</label>
 		<input type="text" ng-model="addCtrl.targetOG">
@@ -18,13 +18,31 @@
 		<input type="text" ng-model="addCtrl.mashTemp">
 		<label>Efficiency:</label>
 		<input type="text" ng-model="addCtrl.mashEff">
-		<button type="submit">Add</button>
-		<button type="button" ng-click="addCtrl.cancel()">Cancel</button>
 	</div>
 	<div>
 		<label>Fermentables:</label>
-		<select ng-model="addCtrl.fermentable" ng-options="ferm.name for ferm in addCtrl.fermentables">
+		<select ng-model="addCtrl.fermentable" ng-options="ferm.name for ferm in addCtrl.fermentablesArray">
 		</select>
+		<label>%:</label>
 		<input type="text" ng-model="addCtrl.fermPercent">
+	</div>
+	<div>
+		<label>Hops:</label>
+		<select ng-model="addCtrl.hops" ng-options="hop.name for hop in addCtrl.hopsArray">
+		</select>
+		<label>AA%:</label>
+		<input type="text" ng-model="addCtrl.aa">
+		<label>Boil time:</label>
+		<input type="text" ng-model="addCtrl.boil">
+	</div>
+	<div>
+		<label>Yeast:</label>
+		<select ng-model="addCtrl.yeast" ng-options="yeast.name for yeast in addCtrl.yeastArray">
+		</select>
+		<input type="checkbox" ng-model="yeastStarter">Starter?
+	</div>
+	<div>
+		<button type="submit">Add</button>
+		<button type="button" ng-click="addCtrl.cancel()">Cancel</button>
 	</div>
 </form>
