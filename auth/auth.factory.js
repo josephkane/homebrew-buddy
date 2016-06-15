@@ -9,7 +9,8 @@ angular.module("app")
 				user.getToken()
 					.then(t => token = t)
 					.then($location.path.bind($location, "/profile"))
-					.then($timeout)
+					.then($timeout);
+
 			}
 		})
 
@@ -23,6 +24,13 @@ angular.module("app")
 			register (email, password) {
 				firebase.auth().createUserWithEmailAndPassword(email, password)
 					.catch((error) => (alert(error.message)));
+			},
+
+			currentUser () {
+				return {
+					user: userId,
+					auth: token
+				}
 			}
 		}
 	})

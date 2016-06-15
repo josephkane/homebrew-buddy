@@ -1,7 +1,4 @@
 angular.module("app", ["ngRoute", "angular.filter", "ui.bootstrap"])
-	.config(() => {
-
-	})
 
 			firebase.initializeApp({
 	    	apiKey: "AIzaSyCR5ir0IC-4lGmOUc4B191v6xGFU-yMNlU",
