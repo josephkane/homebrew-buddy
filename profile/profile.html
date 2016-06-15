@@ -2,7 +2,8 @@
 
 <button type="click" ng-click="profileCtrl.newRecipe()">Add recipe</button>
 
-<div ng-repeat="recipe in profileCtrl.recipes">
+<div ng-repeat="(id, recipe) in profileCtrl.recipes">
 	<p>{{recipe.name}}</p>
 	<p>{{recipe.user}}</p>
+	<button type="click" ng-click="profileCtrl.deleteRecipe(id)">Delete</button>
 </div>
