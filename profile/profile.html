@@ -1,7 +1,7 @@
 <h1>PROFILE</h1>
 <button type="click" ng-click="profileCtrl.logout()">Logout</button>
 
-<button type="click" ng-click="profileCtrl.newRecipe()">Add recipe</button>
+<a href="#/addRecipe">Add recipe</a>
 
 <div ng-repeat="(id, recipe) in profileCtrl.recipes">
 	<p>{{recipe.name}}</p>

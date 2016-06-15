@@ -6,5 +6,3 @@ angular.module("app", ["ngRoute", "angular.filter", "ui.bootstrap"])
 	    	databaseURL: "https://homebrew-buddy-53153.firebaseio.com",
 	    	storageBucket: ""
 	  	});
-
-firebase.auth().signOut();
