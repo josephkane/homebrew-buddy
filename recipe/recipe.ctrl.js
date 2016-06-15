@@ -6,6 +6,7 @@ angular.module("app")
 		addCtrl = this;
 
 		RecipeFactory.styles().then(res => addCtrl.styles = res);
+		RecipeFactory.fermentables().then(res => addCtrl.fermentables = res);
 
 		addCtrl.addNew = function () {
 			let recipe = {
@@ -15,7 +16,14 @@ angular.module("app")
 				targetOG: addCtrl.targetOG,
 				batchSize: addCtrl.batchSize,
 				mashTemp: addCtrl.mashTemp,
-				mashEff: addCtrl.mashEff
+				mashEff: addCtrl.mashEff,
+				grainBill: [
+					{
+						info: addCtrl.fermentable,
+						percentage: addCtrl.fermPercent,
+						name: addCtrl.fermentable.name
+					}
+				]
 			};
 			console.log("recipe: ", recipe);
 		}

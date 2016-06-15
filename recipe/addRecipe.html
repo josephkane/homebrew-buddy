@@ -2,21 +2,29 @@
 <a href="#/profile">Back to profile</a>
 
 <form ng-submit="addCtrl.addNew()">
-	<label>Name:</label>
-	<input type="text" ng-model="addCtrl.name">
-	<label>Description:</label>
-	<input type="text" ng-model="addCtrl.description">
-	<label>Style:</label>
-	<select ng-model="addCtrl.style" ng-options="style.shortName for style in addCtrl.styles">
-	</select>
-	<label>Target OG:</label>
-	<input type="text" ng-model="addCtrl.targetOG">
-	<label>Batch size:</label>
-	<input type="text" ng-model="addCtrl.batchSize">
-	<label>Mash temp:</label>
-	<input type="text" ng-model="addCtrl.mashTemp">
-	<label>Efficiency:</label>
-	<input type="text" ng-model="addCtrl.mashEff">
-	<button type="submit">Add</button>
-	<button type="button" ng-click="addCtrl.cancel()">Cancel</button>
+	<div>
+		<label>Name:</label>
+		<input type="text" ng-model="addCtrl.name">
+		<label>Description:</label>
+		<input type="text" ng-model="addCtrl.description">
+		<label>Style:</label>
+		<select ng-model="addCtrl.style" ng-options="style.shortName for style in addCtrl.styles">
+		</select>
+		<label>Target OG:</label>
+		<input type="text" ng-model="addCtrl.targetOG">
+		<label>Batch size:</label>
+		<input type="text" ng-model="addCtrl.batchSize">
+		<label>Mash temp:</label>
+		<input type="text" ng-model="addCtrl.mashTemp">
+		<label>Efficiency:</label>
+		<input type="text" ng-model="addCtrl.mashEff">
+		<button type="submit">Add</button>
+		<button type="button" ng-click="addCtrl.cancel()">Cancel</button>
+	</div>
+	<div>
+		<label>Fermentables:</label>
+		<select ng-model="addCtrl.fermentable" ng-options="ferm.name for ferm in addCtrl.fermentables">
+		</select>
+		<input type="text" ng-model="addCtrl.fermPercent">
+	</div>
 </form>
