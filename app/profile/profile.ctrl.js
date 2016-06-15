@@ -3,12 +3,16 @@ angular.module("app")
 		const profileCtrl = this;
 
 		firebase.database().ref("/recipe").on("value", (snap) => {
-			console.log("snap: ", snap.val());
 			profileCtrl.recipes = snap.val();
 			$timeout();
 		})
 
 		profileCtrl.newRecipe = function () {
 			ProfileFactory.newRecipe(AuthFactory.currentUser())
+		}
+
+		profileCtrl.deleteRecipe = function (id) {
+			return firebase.database().ref(`/recipe/${id}`)
+				.set(null);
 		}
 	})
