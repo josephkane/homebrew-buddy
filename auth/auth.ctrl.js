@@ -9,4 +9,5 @@ angular.module("app")
 		authCtrl.register = (email, password) => {
 			AuthFactory.register(email, password);
 		}
+
 	})
