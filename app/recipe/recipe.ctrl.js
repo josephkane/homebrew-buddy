@@ -5,8 +5,10 @@ angular.module("app")
 	.controller("AddRecipeControl", function ($location, $timeout, RecipeFactory) {
 		addCtrl = this;
 
-		RecipeFactory.styles().then(res => addCtrl.styles = res);
-		RecipeFactory.fermentables().then(res => addCtrl.fermentables = res);
+		RecipeFactory.styles().then(res => addCtrl.stylesArray = res);
+		RecipeFactory.fermentables().then(res => addCtrl.fermentablesArray = res);
+		RecipeFactory.hops().then(res => addCtrl.hopsArray = res);
+		RecipeFactory.yeast().then(res => addCtrl.yeastArray = res);
 
 		addCtrl.addNew = function () {
 			let recipe = {
@@ -23,7 +25,20 @@ angular.module("app")
 						percentage: addCtrl.fermPercent,
 						name: addCtrl.fermentable.name
 					}
-				]
+				],
+				hops: [
+					{
+						info: addCtrl.hops,
+						aa: addCtrl.aa,
+						boil: addCtrl.boil,
+						name: addCtrl.hops.name
+					}
+				],
+				yeast: {
+					info: addCtrl.yeast,
+					name: addCtrl.yeast.name,
+					starter: addCtrl.yeastStarter
+				}
 			};
 			console.log("recipe: ", recipe);
 		}
