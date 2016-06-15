@@ -1,16 +1,18 @@
 angular.module("app")
-	.factory("AuthFactory", ($location, $timeout) => {
+	.factory("AuthFactory", ($location, $timeout, $http) => {
+		const FB_URL = "https://homebrew-buddy-53153.firebaseio.com"
 		let userId;
+		let userEmail;
 		let token;
 
 		firebase.auth().onAuthStateChanged((user) => {
 			if (user) {
 				userId = user.uid;
+				userEmail = user.email;
 				user.getToken()
 					.then(t => token = t)
 					.then($location.path.bind($location, "/profile"))
-					.then($timeout);
-
+					.then($timeout)
 			}
 		})
 
@@ -23,12 +25,18 @@ angular.module("app")
 
 			register (email, password) {
 				firebase.auth().createUserWithEmailAndPassword(email, password)
+					.then(data => ($http.put(`${FB_URL}/users/${data.uid}.json?auth=${data.Wc}`, {
+						userId: data.uid,
+						email: data.email
+					})))
 					.catch((error) => (alert(error.message)));
+
 			},
 
 			currentUser () {
 				return {
-					user: userId,
+					userId: userId,
+					email: userEmail,
 					auth: token
 				}
 			}
