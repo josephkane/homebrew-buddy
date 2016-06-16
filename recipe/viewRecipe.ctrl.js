@@ -1,5 +1,5 @@
 angular.module("app")
-	.controller("ViewRecipeControl", function (ViewRecipeFactory, $routeParams, AuthFactory) {
+	.controller("ViewRecipeControl", function (ViewRecipeFactory, $routeParams, $location, AuthFactory) {
 		const viewCtrl = this;
 		let currentUser = AuthFactory.currentUser();
 
@@ -7,4 +7,8 @@ angular.module("app")
 			viewCtrl.recipe = snap.val();
 			console.log("recipe: ", snap.val());
 		})
+
+		viewCtrl.backToProfile = function () {
+			$location.path(`/profile/${currentUser.userId}`);
+		}
 	})

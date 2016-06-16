@@ -43,12 +43,12 @@ angular.module("app")
 				}
 			};
 			RecipeFactory.addNewRecipe(currentUser.auth, currentUser.userId, recipe)
-				.then($location.path.bind($location, "/profile"))
+				.then($location.path.bind($location, `/profile/${currentUser.userId}`))
 				.then($timeout);
 		}
 
 		addCtrl.cancel = function () {
-			$location.path.bind($location, "#/profile");
+			$location.path.bind($location, `/profile/${currentUser.userId}`);
 			$timeout();
 		}
 	})
