@@ -13,8 +13,8 @@ angular.module("app")
 		}
 
 		profileCtrl.viewRecipe = function (id, recipe) {
-			console.log("id: ", id);
-			console.log("recipe: ", recipe);
+			ViewRecipeFactory.viewRecipe(id, recipe);
+			$location.path(`/viewRecipe/${id}`)
 		}
 
 		profileCtrl.deleteRecipe = function (id) {
