@@ -1,5 +1,6 @@
 angular.module("app")
 	.factory("RecipeFactory", ($http) => {
+		const FB_URL = "https://homebrew-buddy-53153.firebaseio.com"
 		let styles;
 		let fermentables;
 		let hops;
@@ -17,23 +18,22 @@ angular.module("app")
 			getStyles () {
 				return styles;
 			},
-			fermentables () {
+			fermentables (key) {
 				return $http
-					.get("http://api.brewerydb.com/v2/fermentables/?key=47e0d3ca6616a3f10fa45c87f1787825")
+					.get(`${FB_URL}/ferm.json?auth=${key}`)
 						.then(res => {
-							fermentables = res.data.data;
+							fermentables = res.data;
 							return fermentables;
 					})
 			},
 			getFermentables () {
 				return fermentables;
 			},
-			hops () {
+			hops (key) {
 				return $http
-					.get("http://api.brewerydb.com/v2/hops/?key=47e0d3ca6616a3f10fa45c87f1787825")
+					.get(`${FB_URL}/hops.json?auth=${key}`)
 						.then(res => {
-							hops = res.data.data;
-							console.log("hops: ", hops);
+							hops = res.data;
 							return hops;
 					})
 			},
@@ -45,7 +45,6 @@ angular.module("app")
 					.get("http://api.brewerydb.com/v2/yeasts/?key=47e0d3ca6616a3f10fa45c87f1787825")
 						.then(res => {
 							yeast = res.data.data;
-							console.log("yeast: ", yeast);
 							return yeast;
 					})
 			},
