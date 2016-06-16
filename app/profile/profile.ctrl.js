@@ -1,19 +1,24 @@
 angular.module("app")
-	.controller("ProfileControl", function (AuthFactory, ProfileFactory, $timeout, $location) {
+	.controller("ProfileControl", function (
+		AuthFactory, ProfileFactory, $timeout, $location, ViewRecipeFactory, $routeParams
+		) {
 		const profileCtrl = this;
-		let currentUser = AuthFactory.currentUser();
-
-		firebase.database().ref(`/users/${currentUser.userId}/recipes`).on("value", (snap) => {
+		firebase.database().ref(`/users/${$routeParams.id}/recipes`).on("value", (snap) => {
 			profileCtrl.recipes = snap.val();
 			$timeout();
 		})
 
 		profileCtrl.newRecipe = function () {
-			ProfileFactory.newRecipe(currentUser)
+			$location.path("/addRecipe")
+		}
+
+		profileCtrl.viewRecipe = function (id, recipe) {
+			console.log("id: ", id);
+			console.log("recipe: ", recipe);
 		}
 
 		profileCtrl.deleteRecipe = function (id) {
-			return firebase.database().ref(`/users/${currentUser.userId}/recipes/${id}`)
+			return firebase.database().ref(`/users/${$routeParams.id}/recipes/${id}`)
 				.set(null);
 		}
 

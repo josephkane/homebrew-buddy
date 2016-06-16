@@ -11,7 +11,7 @@ angular.module("app")
 				userEmail = user.email;
 				user.getToken()
 					.then(t => token = t)
-					.then($location.path.bind($location, "/profile"))
+					.then($location.path.bind($location, `/profile/${userId}`))
 					.then($timeout)
 			}
 		})

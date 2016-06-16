@@ -1,4 +1,18 @@
-body	{
+* {
+	box-sizing: border-box;
+}
+
+.main-content {
 	width: 80%;
 	margin: 0 auto;
+}
+
+.flex {
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: space-between;
+}
+
+.recipe-card {
+	border: 1px solid grey;
 }
