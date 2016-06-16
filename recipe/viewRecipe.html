@@ -1,2 +1,32 @@
 <h1>VIEW</h1>
-<a href="#/profile">Back to profile</a>
+<button type="click">Back to profile</button>
+
+<div>
+	<h2>{{viewCtrl.recipe.name}}</h2>
+	<h5>{{viewCtrl.recipe.description}}</h5>
+	<p>{{viewCtrl.recipe.style.shortName}}</p>
+	<ul>
+		<li>Target OG: {{viewCtrl.recipe.targetOG}}</li>
+		<li>Mash Temp: {{viewCtrl.recipe.mashTemp}}</li>
+		<li>Mash Eff: {{viewCtrl.recipe.mashEff}}</li>
+		<li>Batch Size: {{viewCtrl.recipe.batchSize}}</li>
+	</ul>
+</div>
+
+<div>
+	<h4>Fermentables:</h4>
+	<div ng-repeat="ferm in viewCtrl.recipe.grainBill">
+		<p>{{ferm.name}}: {{ferm.percentage}}</p>
+	</div>
+</div>
+<div>
+	<h4>Hops:</h4>
+	<div ng-repeat="hops in viewCtrl.recipe.hops">
+		<p>{{hops.name}}, {{hops.aa}}: {{hops.boil}}</p>
+	</div>
+</div>
+<div>
+	<h4>Yeast:</h4>
+	<p>{{viewCtrl.recipe.yeast.name}}</p>
+	<p>Starter? <strong>{{viewCtrl.recipe.yeast.starter}}</strong></p>
+</div>
