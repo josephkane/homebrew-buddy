@@ -2,12 +2,13 @@ angular.module("app")
 	.controller("ViewRecipeControl", function () {
 
 	})
-	.controller("AddRecipeControl", function ($location, $timeout, RecipeFactory) {
+	.controller("AddRecipeControl", function ($location, $timeout, RecipeFactory, AuthFactory) {
 		addCtrl = this;
+		let currentUser = AuthFactory.currentUser();
 
 		RecipeFactory.styles().then(res => addCtrl.stylesArray = res);
-		RecipeFactory.fermentables().then(res => addCtrl.fermentablesArray = res);
-		RecipeFactory.hops().then(res => addCtrl.hopsArray = res);
+		RecipeFactory.fermentables(currentUser.auth).then(res => addCtrl.fermentablesArray = res);
+		RecipeFactory.hops(currentUser.auth).then(res => addCtrl.hopsArray = res);
 		RecipeFactory.yeast().then(res => addCtrl.yeastArray = res);
 
 		addCtrl.addNew = function () {
