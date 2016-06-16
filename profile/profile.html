@@ -1,10 +1,15 @@
 <h1>PROFILE</h1>
 <button type="click" ng-click="profileCtrl.logout()">Logout</button>
 
-<a href="#/addRecipe">Add recipe</a>
+<button type="click" ng-click="profileCtrl.newRecipe()">Add recipe</button>
 
-<div ng-repeat="(id, recipe) in profileCtrl.recipes">
-	<p>{{recipe.name}}</p>
-	<p>{{recipe.description}}</p>
-	<button type="click" ng-click="profileCtrl.deleteRecipe(id)">Delete</button>
+<div class="main-content">
+	<div class="flex">
+		<div class="recipe-card" ng-repeat="(id, recipe) in profileCtrl.recipes">
+			<h4>{{recipe.name}}</h4>
+			<p>{{recipe.description}}</p>
+			<button type="click" ng-click="profileCtrl.viewRecipe(id, recipe)">View</button>
+			<button type="click" ng-click="profileCtrl.deleteRecipe(id)">Delete</button>
+		</div>
+	</div>
 </div>

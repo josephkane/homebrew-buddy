@@ -1,7 +1,4 @@
 angular.module("app")
-	.controller("ViewRecipeControl", function () {
-
-	})
 	.controller("AddRecipeControl", function ($location, $timeout, RecipeFactory, AuthFactory) {
 		addCtrl = this;
 		let currentUser = AuthFactory.currentUser();
@@ -10,6 +7,10 @@ angular.module("app")
 		RecipeFactory.fermentables(currentUser.auth).then(res => addCtrl.fermentablesArray = res);
 		RecipeFactory.hops(currentUser.auth).then(res => addCtrl.hopsArray = res);
 		RecipeFactory.yeast().then(res => addCtrl.yeastArray = res);
+
+		addCtrl.backToProfile = function () {
+			$location.path(`/profile/${currentUser.userId}`);
+		}
 
 		addCtrl.addNew = function () {
 			let recipe = {
