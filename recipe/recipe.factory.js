@@ -50,6 +50,11 @@ angular.module("app")
 			},
 			getYeast () {
 				return yeast;
+			},
+			addNewRecipe (key, user, recipe) {
+				console.log("post");
+				return $http
+					.post(`${FB_URL}/users/${user}/recipes.json?auth=${key}`, recipe)
 			}
 		}
 	})

@@ -41,7 +41,9 @@ angular.module("app")
 					starter: addCtrl.yeastStarter
 				}
 			};
-			console.log("recipe: ", recipe);
+			RecipeFactory.addNewRecipe(currentUser.auth, currentUser.userId, recipe)
+				.then($location.path.bind($location, "/profile"))
+				.then($timeout);
 		}
 
 		addCtrl.cancel = function () {
