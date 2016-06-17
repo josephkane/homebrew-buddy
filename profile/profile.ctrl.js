@@ -13,7 +13,6 @@ angular.module("app")
 		}
 
 		profileCtrl.viewRecipe = function (id, recipe) {
-			ViewRecipeFactory.viewRecipe(id, recipe);
 			$location.path(`/viewRecipe/${id}`)
 		}
 
