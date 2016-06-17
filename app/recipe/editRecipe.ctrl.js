@@ -7,6 +7,7 @@ angular.module("app")
 		let currentUser = AuthFactory.currentUser();
 
 		firebase.database().ref(`/users/${currentUser.userId}/recipes/${$routeParams.id}`).on("value", (snap) => {
+			console.log("Recipe", snap.val());
 			editCtrl.recipe = snap.val();
 		})
 
@@ -49,5 +50,9 @@ angular.module("app")
 			EditRecipeFactory.updateRecipe(currentUser, $routeParams.id, recipe)
 				.then($location.path.bind($location, `/profile/${currentUser.userId}`))
 				.then($timeout);
+		}
+
+		editCtrl.cancel = function () {
+			$location.path(`/profile/${currentUser.userId}`)
 		}
 	})
