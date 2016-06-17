@@ -1,12 +1,12 @@
 angular.module("app")
-	.controller("AddRecipeControl", function ($location, $timeout, RecipeFactory, AuthFactory) {
+	.controller("AddRecipeControl", function ($location, $timeout, AddRecipeFactory, AuthFactory) {
 		addCtrl = this;
 		let currentUser = AuthFactory.currentUser();
 
-		RecipeFactory.styles().then(res => addCtrl.stylesArray = res);
-		RecipeFactory.fermentables(currentUser.auth).then(res => addCtrl.fermentablesArray = res);
-		RecipeFactory.hops(currentUser.auth).then(res => addCtrl.hopsArray = res);
-		RecipeFactory.yeast().then(res => addCtrl.yeastArray = res);
+		AddRecipeFactory.styles().then(res => addCtrl.stylesArray = res);
+		AddRecipeFactory.fermentables(currentUser.auth).then(res => addCtrl.fermentablesArray = res);
+		AddRecipeFactory.hops(currentUser.auth).then(res => addCtrl.hopsArray = res);
+		AddRecipeFactory.yeast().then(res => addCtrl.yeastArray = res);
 
 		addCtrl.backToProfile = function () {
 			$location.path(`/profile/${currentUser.userId}`);
@@ -42,7 +42,7 @@ angular.module("app")
 					starter: addCtrl.yeastStarter
 				}
 			};
-			RecipeFactory.addNewRecipe(currentUser.auth, currentUser.userId, recipe)
+			AddRecipeFactory.addNewRecipe(currentUser.auth, currentUser.userId, recipe)
 				.then($location.path.bind($location, `/profile/${currentUser.userId}`))
 				.then($timeout);
 		}

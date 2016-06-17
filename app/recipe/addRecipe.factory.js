@@ -1,6 +1,6 @@
 angular.module("app")
-	.factory("RecipeFactory", ($http) => {
-		const FB_URL = "https://homebrew-buddy-53153.firebaseio.com"
+	.factory("AddRecipeFactory", ($http) => {
+		const FB_URL = "https://homebrew-buddy-53153.firebaseio.com";
 		let styles;
 		let fermentables;
 		let hops;

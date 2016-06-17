@@ -8,7 +8,7 @@
 		<label>Description:</label>
 		<input type="text" ng-model="addCtrl.description">
 		<label>Style:</label>
-		<select ng-model="addCtrl.style" ng-options="style.shortName for style in addCtrl.stylesArray">
+		<select ng-model="addCtrl.style" ng-options="style.shortName for style in addCtrl.stylesArray | orderBy: 'name'">
 		</select>
 		<label>Target OG:</label>
 		<input type="text" ng-model="addCtrl.targetOG">

@@ -5,10 +5,13 @@ angular.module("app")
 
 		firebase.database().ref(`users/${currentUser.userId}/recipes/${$routeParams.id}`).on("value", (snap) => {
 			viewCtrl.recipe = snap.val();
-			console.log("recipe: ", snap.val());
 		})
 
 		viewCtrl.backToProfile = function () {
 			$location.path(`/profile/${currentUser.userId}`);
+		}
+
+		viewCtrl.editRecipe = function () {
+			$location.path(`/editRecipe/${$routeParams.id}`)
 		}
 	})
