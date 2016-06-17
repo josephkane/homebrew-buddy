@@ -1,59 +1,61 @@
 <h1>EDIT RECIPE</h1>
 
-<form ng-submit="editCtrl.updateRecipe()">
-	<div>
-		<label>Name:</label>
-		<input type="text" ng-model="editCtrl.recipe.name">
-		<label>Description:</label>
-		<input type="text" ng-model="editCtrl.recipe.description">
-		<label>Style:</label>
-		<select
-			ng-model="editCtrl.recipe.style"
-			ng-options="style.shortName for style in editCtrl.stylesArray | orderBy: 'name'"
-			ng-checked="editCtrl.recipe.style">
-		</select>
-		<label>Target OG:</label>
-		<input type="text" ng-model="editCtrl.recipe.targetOG">
-		<label>Batch size:</label>
-		<input type="text" ng-model="editCtrl.recipe.batchSize">
-		<label>Mash temp:</label>
-		<input type="text" ng-model="editCtrl.recipe.mashTemp">
-		<label>Efficiency:</label>
-		<input type="text" ng-model="editCtrl.recipe.mashEff">
-	</div>
-	<div>
-		<label>Fermentables:</label>
-		<select
-			ng-model="editCtrl.recipe.grainBill[0].info"
-			ng-options="ferm.name for ferm in editCtrl.fermentablesArray.data"
-			ng-selected="editCtrl.recipe.grainBill[0].name">
-		</select>
-		<label>%:</label>
-		<input type="text" ng-model="editCtrl.recipe.grainBill[0].percentage">
-	</div>
-	<div>
-		<label>Hops:</label>
-		<select
-			ng-model="editCtrl.recipe.hops[0].info"
-			ng-options="hop.name for hop in editCtrl.hopsArray.data"
-			ng-selected="editCtrl.recipe.hops[0].info">
-		</select>
-		<label>AA%:</label>
-		<input type="text" ng-model="editCtrl.recipe.hops[0].aa">
-		<label>Boil time:</label>
-		<input type="text" ng-model="editCtrl.recipe.hops[0].boil">
-	</div>
-	<div>
-		<label>Yeast:</label>
-		<select
-			ng-model="editCtrl.recipe.yeast"
-			ng-options="yeast.name for yeast in editCtrl.yeastArray"
-			ng-selected="editCtrl.recipe.yeast.name">
-		</select>
-		<input type="checkbox" ng-model="editCtrl.recipe.yeast.starter" ng-checked="editCtrl.recipe.yeast.starter">Starter?
-	</div>
-	<div>
-		<button type="submit">Save</button>
-		<button type="button" ng-click="editCtrl.cancel()">Cancel</button>
-	</div>
-</form>
+<div class="main-content">
+	<form ng-submit="editCtrl.updateRecipe()">
+		<div>
+			<label>Name:</label>
+			<input type="text" ng-model="editCtrl.recipe.name">
+			<label>Description:</label>
+			<input type="text" ng-model="editCtrl.recipe.description">
+			<label>Style:</label>
+			<select
+				ng-model="editCtrl.recipe.style"
+				ng-options="style.shortName for style in editCtrl.stylesArray | orderBy: 'name'"
+				ng-init="editCtrl.recipe.style.shortName = editCtrl.recipe.style.shortName">
+			</select>
+			<label>Target OG:</label>
+			<input type="text" ng-model="editCtrl.recipe.targetOG">
+			<label>Batch size:</label>
+			<input type="text" ng-model="editCtrl.recipe.batchSize">
+			<label>Mash temp:</label>
+			<input type="text" ng-model="editCtrl.recipe.mashTemp">
+			<label>Efficiency:</label>
+			<input type="text" ng-model="editCtrl.recipe.mashEff">
+		</div>
+		<div>
+			<label>Fermentables:</label>
+			<select
+				ng-model="editCtrl.recipe.grainBill[0].info"
+				ng-options="ferm.name for ferm in editCtrl.fermentablesArray.data"
+				ng-selected="editCtrl.recipe.grainBill[0].name">
+			</select>
+			<label>%:</label>
+			<input type="text" ng-model="editCtrl.recipe.grainBill[0].percentage">
+		</div>
+		<div>
+			<label>Hops:</label>
+			<select
+				ng-model="editCtrl.recipe.hops[0].info"
+				ng-options="hop.name for hop in editCtrl.hopsArray.data"
+				ng-selected="editCtrl.recipe.hops[0].info">
+			</select>
+			<label>AA%:</label>
+			<input type="text" ng-model="editCtrl.recipe.hops[0].aa">
+			<label>Boil time:</label>
+			<input type="text" ng-model="editCtrl.recipe.hops[0].boil">
+		</div>
+		<div>
+			<label>Yeast:</label>
+			<select
+				ng-model="editCtrl.recipe.yeast"
+				ng-options="yeast.name for yeast in editCtrl.yeastArray"
+				ng-selected="editCtrl.recipe.yeast.name">
+			</select>
+			<input type="checkbox" ng-model="editCtrl.recipe.yeast.starter" ng-checked="editCtrl.recipe.yeast.starter">Starter?
+		</div>
+		<div>
+			<button type="submit">Save</button>
+			<button type="button" ng-click="editCtrl.cancel()">Cancel</button>
+		</div>
+	</form>
+</div>
