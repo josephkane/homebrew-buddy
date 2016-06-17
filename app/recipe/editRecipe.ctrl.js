@@ -26,23 +26,23 @@ angular.module("app")
 				mashEff: editCtrl.recipe.mashEff,
 				grainBill: [
 					{
-						info: editCtrl.recipe.fermentable,
-						percentage: editCtrl.recipe.fermPercent,
-						name: editCtrl.recipe.fermentable.name
+						info: editCtrl.recipe.grainBill[0].info,
+						percentage: editCtrl.recipe.grainBill[0].percentage,
+						name: editCtrl.recipe.grainBill[0].info.name
 					}
 				],
 				hops: [
 					{
-						info: editCtrl.recipe.hops,
-						aa: editCtrl.recipe.aa,
-						boil: editCtrl.recipe.boil,
-						name: editCtrl.recipe.hops.name
+						info: editCtrl.recipe.hops[0].info,
+						aa: editCtrl.recipe.hops[0].aa,
+						boil: editCtrl.recipe.hops[0].boil,
+						name: editCtrl.recipe.hops[0].info.name
 					}
 				],
 				yeast: {
 					info: editCtrl.recipe.yeast,
 					name: editCtrl.recipe.yeast.name,
-					starter: editCtrl.recipe.yeastStarter
+					starter: editCtrl.recipe.yeast.starter
 				}
 			};
 			console.log("recipe: ", recipe);

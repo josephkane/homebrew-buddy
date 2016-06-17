@@ -24,7 +24,7 @@
 	<div>
 		<label>Fermentables:</label>
 		<select
-			ng-model="editCtrl.recipe.fermentable"
+			ng-model="editCtrl.recipe.grainBill[0].info"
 			ng-options="ferm.name for ferm in editCtrl.fermentablesArray.data"
 			ng-selected="editCtrl.recipe.grainBill[0].name">
 		</select>
@@ -34,9 +34,9 @@
 	<div>
 		<label>Hops:</label>
 		<select
-			ng-model="editCtrl.recipe.hops"
+			ng-model="editCtrl.recipe.hops[0].info"
 			ng-options="hop.name for hop in editCtrl.hopsArray.data"
-			ng-selected="editCtrl.recipe.hops[0].name">
+			ng-selected="editCtrl.recipe.hops[0].info">
 		</select>
 		<label>AA%:</label>
 		<input type="text" ng-model="editCtrl.recipe.hops[0].aa">
