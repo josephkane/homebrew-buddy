@@ -4,7 +4,6 @@
 <div class="main-content">
 	<form ng-submit="addCtrl.addNew()">
 
-
 		<div class="form-group">
 			<label>Name:</label>
 			<input class="form-control" type="text" ng-model="addCtrl.name">
@@ -44,13 +43,8 @@
 
 
 		<div class="section-two">
-			<!-- <div class="form-group">
-				<p><label>Fermentables:</label></p>
-				<select ng-model="addCtrl.fermentableOne" ng-options="ferm.name for ferm in addCtrl.fermentablesArray.data">
-				</select>
-				<label>%:</label>
-				<input type="text" ng-model="addCtrl.fermPercentOne">
-			</div> -->
+
+<!--FERMENTABLES-->
 			<table class="table">
 				<thead>
 					<tr>
@@ -59,82 +53,22 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
+					<tr ng-repeat="ferm in addCtrl.grainCounter">
 						<td>
 							<select
-								ng-model="addCtrl.fermentableOne"
+								ng-model="addCtrl.fermentable[$index]"
 								ng-options="ferm.name for ferm in addCtrl.fermentablesArray.data">
 							</select>
 						</td>
 						<td>
-							<input type="text" ng-model="addCtrl.fermPercentOne">
-						</td>
-					</tr>
-					<tr ng-show="addCtrl.fermentableOne">
-						<td>
-							<select
-								ng-model="addCtrl.fermentableTwo"
-								ng-options="ferm.name for ferm in addCtrl.fermentablesArray.data">
-							</select>
-						</td>
-						<td>
-							<input type="text" ng-model="addCtrl.fermPercentTwo">
-						</td>
-					</tr>
-					<tr ng-show="addCtrl.fermentableTwo">
-						<td>
-							<select
-								ng-model="addCtrl.fermentableThree"
-								ng-options="ferm.name for ferm in addCtrl.fermentablesArray.data">
-							</select>
-						</td>
-						<td>
-							<input type="text" ng-model="addCtrl.fermPercentThree">
-						</td>
-					</tr>
-					<tr ng-show="addCtrl.fermentableThree">
-						<td>
-							<select
-								ng-model="addCtrl.fermentableFour"
-								ng-options="ferm.name for ferm in addCtrl.fermentablesArray.data">
-							</select>
-						</td>
-						<td>
-							<input type="text" ng-model="addCtrl.fermPercentFour">
-						</td>
-					</tr>
-					<tr ng-show="addCtrl.fermentableFour">
-						<td>
-							<select
-								ng-model="addCtrl.fermentableFive"
-								ng-options="ferm.name for ferm in addCtrl.fermentablesArray.data">
-							</select>
-						</td>
-						<td>
-							<input type="text" ng-model="addCtrl.fermPercentFive">
+							<input type="text" ng-model="addCtrl.fermentable[$index].percent">
 						</td>
 					</tr>
 				</tbody>
 			</table>
+			<div class="btn btn-default" ng-click="addCtrl.addFermentable()">Add Grain</div>
 
-<!-- 			<div class="form-group">
-				<p><label>Hops:</label></p>
-				<select ng-model="addCtrl.hopsOne" ng-options="hop.name for hop in addCtrl.hopsArray.data">
-				</select>
-				<label>oz:</label>
-				<input type="text" ng-model="addCtrl.ozOne">
-				<label>AA%:</label>
-				<input type="text" ng-model="addCtrl.aaOne">
-				<label>Boil time:</label>
-				<select ng-model="addCtrl.boilOne">
-					<option value="0.2697">60</option>
-					<option value="0.2476">45</option>
-					<option value="0.2073">30</option>
-					<option value="0.1338">15</option>
-					<option value="0">0</option>
-				</select>
-			</div> -->
-
+<!--HOPS-->
 			<table class="table">
 				<thead>
 					<tr>
@@ -145,228 +79,21 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
+					<tr ng-repeat="hop in addCtrl.hopsCounter">
 						<td>
 							<select
-								ng-model="addCtrl.hopsOne"
+								ng-model="addCtrl.hops[$index]"
 								ng-options="hop.name for hop in addCtrl.hopsArray.data">
 							</select>
 						</td>
 						<td>
-							<input type="text" ng-model="addCtrl.ozOne">
+							<input type="text" ng-model="addCtrl.hops[$index].oz">
 						</td>
 						<td>
-							<input type="text" ng-model="addCtrl.aaOne">
+							<input type="text" ng-model="addCtrl.hops[$index].aa">
 						</td>
 						<td>
-							<select ng-model="addCtrl.boilOne">
-								<option name="boil" value="0.2697">60</option>
-								<option name="boil" value="0.2476">45</option>
-								<option name="boil" value="0.2073">30</option>
-								<option name="boil" value="0.1338">15</option>
-								<option name="boil" value="0">0</option>
-							</select>
-						</td>
-					</tr>
-					<tr ng-show="addCtrl.hopsOne">
-						<td>
-							<select
-								ng-model="addCtrl.hopsTwo"
-								ng-options="hop.name for hop in addCtrl.hopsArray.data">
-							</select>
-						</td>
-						<td>
-							<input type="text" ng-model="addCtrl.ozTwo">
-						</td>
-						<td>
-							<input type="text" ng-model="addCtrl.aaTwo">
-						</td>
-						<td>
-							<select ng-model="addCtrl.boilTwo">
-								<option name="boil" value="0.2697">60</option>
-								<option name="boil" value="0.2476">45</option>
-								<option name="boil" value="0.2073">30</option>
-								<option name="boil" value="0.1338">15</option>
-								<option name="boil" value="0">0</option>
-							</select>
-						</td>
-					</tr>
-					<tr ng-show="addCtrl.hopsTwo">
-						<td>
-							<select
-								ng-model="addCtrl.hopsThree"
-								ng-options="hop.name for hop in addCtrl.hopsArray.data">
-							</select>
-						</td>
-						<td>
-							<input type="text" ng-model="addCtrl.ozThree">
-						</td>
-						<td>
-							<input type="text" ng-model="addCtrl.aaThree">
-						</td>
-						<td>
-							<select ng-model="addCtrl.boilThree">
-								<option name="boil" value="0.2697">60</option>
-								<option name="boil" value="0.2476">45</option>
-								<option name="boil" value="0.2073">30</option>
-								<option name="boil" value="0.1338">15</option>
-								<option name="boil" value="0">0</option>
-							</select>
-						</td>
-					</tr>
-					<tr ng-show="addCtrl.hopsThree">
-						<td>
-							<select
-								ng-model="addCtrl.hopsFour"
-								ng-options="hop.name for hop in addCtrl.hopsArray.data">
-							</select>
-						</td>
-						<td>
-							<input type="text" ng-model="addCtrl.ozFour">
-						</td>
-						<td>
-							<input type="text" ng-model="addCtrl.aaFour">
-						</td>
-						<td>
-							<select ng-model="addCtrl.boilFour">
-								<option name="boil" value="0.2697">60</option>
-								<option name="boil" value="0.2476">45</option>
-								<option name="boil" value="0.2073">30</option>
-								<option name="boil" value="0.1338">15</option>
-								<option name="boil" value="0">0</option>
-							</select>
-						</td>
-					</tr>
-					<tr ng-show="addCtrl.hopsFour">
-						<td>
-							<select
-								ng-model="addCtrl.hopsFive"
-								ng-options="hop.name for hop in addCtrl.hopsArray.data">
-							</select>
-						</td>
-						<td>
-							<input type="text" ng-model="addCtrl.ozFive">
-						</td>
-						<td>
-							<input type="text" ng-model="addCtrl.aaFive">
-						</td>
-						<td>
-							<select ng-model="addCtrl.boilFive">
-								<option name="boil" value="0.2697">60</option>
-								<option name="boil" value="0.2476">45</option>
-								<option name="boil" value="0.2073">30</option>
-								<option name="boil" value="0.1338">15</option>
-								<option name="boil" value="0">0</option>
-							</select>
-						</td>
-					</tr>
-					<tr ng-show="addCtrl.hopsFive">
-						<td>
-							<select
-								ng-model="addCtrl.hopsSix"
-								ng-options="hop.name for hop in addCtrl.hopsArray.data">
-							</select>
-						</td>
-						<td>
-							<input type="text" ng-model="addCtrl.ozSix">
-						</td>
-						<td>
-							<input type="text" ng-model="addCtrl.aaSix">
-						</td>
-						<td>
-							<select ng-model="addCtrl.boilSix">
-								<option name="boil" value="0.2697">60</option>
-								<option name="boil" value="0.2476">45</option>
-								<option name="boil" value="0.2073">30</option>
-								<option name="boil" value="0.1338">15</option>
-								<option name="boil" value="0">0</option>
-							</select>
-						</td>
-					</tr>
-					<tr ng-show="addCtrl.hopsSix">
-						<td>
-							<select
-								ng-model="addCtrl.hopsSeven"
-								ng-options="hop.name for hop in addCtrl.hopsArray.data">
-							</select>
-						</td>
-						<td>
-							<input type="text" ng-model="addCtrl.ozSeven">
-						</td>
-						<td>
-							<input type="text" ng-model="addCtrl.aaSeven">
-						</td>
-						<td>
-							<select ng-model="addCtrl.boilSeven">
-								<option name="boil" value="0.2697">60</option>
-								<option name="boil" value="0.2476">45</option>
-								<option name="boil" value="0.2073">30</option>
-								<option name="boil" value="0.1338">15</option>
-								<option name="boil" value="0">0</option>
-							</select>
-						</td>
-					</tr>
-					<tr ng-show="addCtrl.hopsSeven">
-						<td>
-							<select
-								ng-model="addCtrl.hopsEight"
-								ng-options="hop.name for hop in addCtrl.hopsArray.data">
-							</select>
-						</td>
-						<td>
-							<input type="text" ng-model="addCtrl.ozEight">
-						</td>
-						<td>
-							<input type="text" ng-model="addCtrl.aaEight">
-						</td>
-						<td>
-							<select ng-model="addCtrl.boilEight">
-								<option name="boil" value="0.2697">60</option>
-								<option name="boil" value="0.2476">45</option>
-								<option name="boil" value="0.2073">30</option>
-								<option name="boil" value="0.1338">15</option>
-								<option name="boil" value="0">0</option>
-							</select>
-						</td>
-					</tr>
-					<tr ng-show="addCtrl.hopsEight">
-						<td>
-							<select
-								ng-model="addCtrl.hopsNine"
-								ng-options="hop.name for hop in addCtrl.hopsArray.data">
-							</select>
-						</td>
-						<td>
-							<input type="text" ng-model="addCtrl.ozNine">
-						</td>
-						<td>
-							<input type="text" ng-model="addCtrl.aaNine">
-						</td>
-						<td>
-							<select ng-model="addCtrl.boilNine">
-								<option name="boil" value="0.2697">60</option>
-								<option name="boil" value="0.2476">45</option>
-								<option name="boil" value="0.2073">30</option>
-								<option name="boil" value="0.1338">15</option>
-								<option name="boil" value="0">0</option>
-							</select>
-						</td>
-					</tr>
-					<tr ng-show="addCtrl.hopsNine">
-						<td>
-							<select
-								ng-model="addCtrl.hopsTen"
-								ng-options="hop.name for hop in addCtrl.hopsArray.data">
-							</select>
-						</td>
-						<td>
-							<input type="text" ng-model="addCtrl.ozTen">
-						</td>
-						<td>
-							<input type="text" ng-model="addCtrl.aaTen">
-						</td>
-						<td>
-							<select ng-model="addCtrl.boilTen">
+							<select ng-model="addCtrl.hops[$index].boil">
 								<option name="boil" value="0.2697">60</option>
 								<option name="boil" value="0.2476">45</option>
 								<option name="boil" value="0.2073">30</option>
@@ -377,7 +104,10 @@
 					</tr>
 				</tbody>
 			</table>
+			<div class="btn btn-default" ng-click="addCtrl.addHops()">Add Hop</div>
 
+
+<!--YEAST-->
 			<div>
 				<label>Yeast:</label>
 				<select ng-model="addCtrl.yeast" ng-options="yeast.name for yeast in addCtrl.yeastArray">
