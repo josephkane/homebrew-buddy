@@ -14,19 +14,54 @@
 		</ul>
 	</div>
 
-	<div>
-		<h4>Fermentables:</h4>
-		<div ng-repeat="ferm in viewCtrl.recipe.grainBill">
-			<p>{{ferm.name}}: {{ferm.percentage}}</p>
-		</div>
-	</div>
-	<div>
-		<h4>Hops:</h4>
-		<div ng-repeat="hops in viewCtrl.recipe.hops">
-			<p>{{hops.name}}, {{hops.aa}}: {{hops.boil}}</p>
-		</div>
-	</div>
-	<div>
+
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th>Fermentables</th>
+					<th>% of Grain Bill</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="ferm in viewCtrl.recipe.grainBill | toArray">
+					<td>
+						{{ferm.name}}
+					</td>
+					<td>
+						{{ferm.percent}}
+					</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th>Hops</th>
+					<th>Oz.</th>
+					<th>AA%</th>
+					<th>Boil Time</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="hop in viewCtrl.recipe.hops | toArray">
+					<td>
+						{{hop.name}}
+					</td>
+					<td>
+						{{hop.oz}}
+					</td>
+					<td>
+						{{hop.aa}}
+					</td>
+					<td>
+						{{hop.boil}}
+					</td>
+				</tr>
+			</tbody>
+		</table>
+
+
 		<h4>Yeast:</h4>
 		<p>{{viewCtrl.recipe.yeast.name}}</p>
 		<p>Starter? <strong>{{viewCtrl.recipe.yeast.starter}}</strong></p>
