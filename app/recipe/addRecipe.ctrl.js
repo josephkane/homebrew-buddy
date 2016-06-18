@@ -3,9 +3,9 @@ angular.module("app")
 		const addCtrl = this;
 		let currentUser = AuthFactory.currentUser();
 
-		addCtrl.grainBill = [];
+		addCtrl.grainBill = {};
 		addCtrl.grainCounter = [];
-		addCtrl.hopsBill = [];
+		addCtrl.hopsBill = {};
 		addCtrl.hopsCounter = [];
 
 		AddRecipeFactory.styles().then(res => addCtrl.stylesArray = res);
@@ -26,8 +26,8 @@ angular.module("app")
 		}
 
 		addCtrl.addNew = function () {
-			addCtrl.grainBill.push(addCtrl.fermentable);
-			addCtrl.hopsBill.push(addCtrl.hops);
+			addCtrl.grainBill = addCtrl.fermentable;
+			addCtrl.hopsBill = addCtrl.hops;
 			let recipe = {
 				name: addCtrl.name,
 				description: addCtrl.description,
