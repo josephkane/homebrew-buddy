@@ -28,14 +28,15 @@ angular.module("app")
 		addCtrl.addNew = function () {
 			addCtrl.grainBill = addCtrl.fermentable;
 			addCtrl.hopsBill = addCtrl.hops;
+
 			let recipe = {
 				name: addCtrl.name,
 				description: addCtrl.description,
 				style: addCtrl.style,
-				targetOG: addCtrl.targetOG,
-				batchSize: addCtrl.batchSize,
-				mashTemp: addCtrl.mashTemp,
-				mashEff: addCtrl.mashEff,
+				targetOG: parseFloat(addCtrl.targetOG),
+				batchSize: parseFloat(addCtrl.batchSize),
+				mashTemp: parseFloat(addCtrl.mashTemp),
+				mashEff: parseFloat(addCtrl.mashEff),
 				grainBill: addCtrl.grainBill,
 				hops: addCtrl.hopsBill,
 				yeast: {
