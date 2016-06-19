@@ -36,7 +36,7 @@ angular.module("app")
 				targetOG: parseFloat(addCtrl.targetOG),
 				batchSize: parseFloat(addCtrl.batchSize),
 				mashTemp: parseFloat(addCtrl.mashTemp),
-				mashEff: parseFloat(addCtrl.mashEff),
+				mashEff: parseInt(addCtrl.mashEff) / 100,
 				grainBill: addCtrl.grainBill,
 				hops: addCtrl.hopsBill,
 				yeast: {

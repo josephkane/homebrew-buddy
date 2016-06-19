@@ -52,11 +52,9 @@ angular.module("app")
 				return yeast;
 			},
 			addNewRecipe (key, user, recipe) {
-				console.log("addNewRecipe");
-				console.log("key: ", key);
-				console.log("user: ", user);
-				console.log("recipe: ", recipe);
 				let totalIBU = 0;
+				let totalGravityUnits = parseInt(((recipe.targetOG - 1) * 1000) * recipe.batchSize);
+				console.log("tgu: ", totalGravityUnits);
 
 				if (recipe.targetOG <= 1.050) {
 					console.log("cf = 1");
@@ -122,12 +120,19 @@ angular.module("app")
 						* (7489)) / (recipe.batchSize * correctionFactor));
 						totalIBU += contributedIBU;
 					}}
-					recipe.totalIBU = totalIBU;
+				recipe.totalIBU = totalIBU;
+
+				for (var key in recipe.grainBill) {
+					let gravityNeeded = ((recipe.grainBill[key].percent / 100) * totalGravityUnits);
+					console.log("gravity needed: ", gravityNeeded);
+					recipe.grainBill[key].grainInLbs =
+					(gravityNeeded / ((recipe.grainBill[key].potential - 1) * 1000) / recipe.mashEff)
+				}
 
 				console.log("recipe: ", recipe);
 
-				return $http
-					.post(`${FB_URL}/users/${user}/recipes.json?auth=${key}`, recipe)
+				return
+					$http.post(`${FB_URL}/users/${user}/recipes.json?auth=${key}`, recipe);
 			}
 		}
 	})
