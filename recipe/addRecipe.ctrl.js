@@ -7,8 +7,8 @@ angular.module("app")
 		addCtrl.hopsBill = [];
 
 		AddRecipeFactory.styles().then(res => addCtrl.stylesArray = res);
-		AddRecipeFactory.fermentables(currentUser.auth).then(res => addCtrl.fermentablesArray = res);
-		AddRecipeFactory.hops(currentUser.auth).then(res => addCtrl.hopsArray = res);
+		AddRecipeFactory.fermentables(currentUser.auth).then(res => addCtrl.fermentablesArray = res.data.map((ferm) => ferm.name));
+		AddRecipeFactory.hops(currentUser.auth).then(res => addCtrl.hopsArray = res.data.map((hop) => hop.name));
 		AddRecipeFactory.yeast().then(res => addCtrl.yeastArray = res);
 
 		addCtrl.backToProfile = function () {

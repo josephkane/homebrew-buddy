@@ -54,15 +54,15 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr ng-repeat="ferm in addCtrl.grainBill track by $index">
+					<tr ng-repeat="ferm in addCtrl.grainBill">
 						<td>
 							<select
-								ng-model="addCtrl.grainBill[$index]"
-								ng-options="ferm.name for ferm in addCtrl.fermentablesArray.data">
+								ng-model="ferm.name"
+								ng-options="f as f for f in addCtrl.fermentablesArray">
 							</select>
 						</td>
 						<td>
-							<input type="text" ng-model="addCtrl.grainBill[$index].percent">
+							<input type="text" ng-model="ferm.percent">
 						</td>
 						<td>
 							<div class="btn btn-default" ng-click="addCtrl.deleteFerm(ferm)">Delete</div>
@@ -84,21 +84,21 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr ng-repeat="hop in addCtrl.hopsBill track by $index">
+					<tr ng-repeat="hop in addCtrl.hopsBill">
 						<td>
 							<select
-								ng-model="addCtrl.hopsBill[$index]"
-								ng-options="hop.name for hop in addCtrl.hopsArray.data">
+								ng-model="hop.name"
+								ng-options="h as h for h in addCtrl.hopsArray">
 							</select>
 						</td>
 						<td>
-							<input type="text" ng-model="addCtrl.hopsBill[$index].oz">
+							<input type="text" ng-model="hop.oz">
 						</td>
 						<td>
-							<input type="text" ng-model="addCtrl.hopsBill[$index].aa">
+							<input type="text" ng-model="hop.aa">
 						</td>
 						<td>
-							<select ng-model="addCtrl.hopsBill[$index].boil">
+							<select ng-model="hop.boil">
 								<option name="boil" value=60>60</option>
 								<option name="boil" value=55>55</option>
 								<option name="boil" value=50>50</option>

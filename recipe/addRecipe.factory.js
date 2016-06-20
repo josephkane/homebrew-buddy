@@ -58,6 +58,18 @@ angular.module("app")
 				let totalIBU = 0;
 				let totalGravityUnits = parseInt(((recipe.targetOG - 1) * 1000) * recipe.batchSize);
 				console.log("tgu: ", totalGravityUnits);
+				console.log("fermentables: ", fermentables);
+
+
+				for (let ferm in recipe.grainBill) {
+					for (let grain in fermentables.data) {
+						if (recipe.grainBill[ferm].name === fermentables.data[grain].name) {
+							console.log("matched grain: ", fermentables.data[grain]);
+							recipe.grainBill[ferm].potential = fermentables.data[grain].potential;
+							recipe.grainBill[ferm].srm = fermentables.data[grain].srm;
+						}
+					}
+				};
 
 				if (recipe.targetOG <= 1.050) {
 					console.log("cf = 1");
