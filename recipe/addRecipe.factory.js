@@ -18,9 +18,10 @@ angular.module("app")
 			getStyles () {
 				return styles;
 			},
-			fermentables (key) {
+			fermentables () {
+				let currentUser = AuthFactory.currentUser();
 				return $http
-					.get(`${FB_URL}/ferm.json?auth=${key}`)
+					.get(`${FB_URL}/ferm.json?auth=${currentUser.auth}`)
 						.then(res => {
 							fermentables = res.data;
 							return fermentables;
@@ -29,9 +30,10 @@ angular.module("app")
 			getFermentables () {
 				return fermentables;
 			},
-			hops (key) {
+			hops () {
+				let currentUser = AuthFactory.currentUser()
 				return $http
-					.get(`${FB_URL}/hops.json?auth=${key}`)
+					.get(`${FB_URL}/hops.json?auth=${currentUser.auth}`)
 						.then(res => {
 							hops = res.data;
 							return hops;
@@ -51,7 +53,7 @@ angular.module("app")
 			getYeast () {
 				return yeast;
 			},
-			addNewRecipe (token, user, recipe) {
+			addNewRecipe (recipe) {
 				let currentUser = AuthFactory.currentUser();
 				let totalIBU = 0;
 				let totalGravityUnits = parseInt(((recipe.targetOG - 1) * 1000) * recipe.batchSize);
@@ -119,6 +121,7 @@ angular.module("app")
 						* (recipe.hops[key].utilization)
 						* (parseFloat(recipe.hops[key].aa) / 100)
 						* (7489)) / (recipe.batchSize * correctionFactor));
+						recipe.hops[key].contributedIBU = contributedIBU;
 						totalIBU += contributedIBU;
 					}}
 				recipe.totalIBU = totalIBU;
@@ -127,7 +130,7 @@ angular.module("app")
 					let gravityNeeded = ((recipe.grainBill[key].percent / 100) * totalGravityUnits);
 					console.log("gravity needed: ", gravityNeeded);
 					recipe.grainBill[key].grainInLbs =
-					(gravityNeeded / ((recipe.grainBill[key].potential - 1) * 1000) / recipe.mashEff)
+					(gravityNeeded / ((recipe.grainBill[key].potential - 1) * 1000) / (recipe.mashEff / 100))
 				}
 
 				console.log("recipe: ", recipe);
