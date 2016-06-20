@@ -1,5 +1,5 @@
 angular.module("app")
-	.factory("AddRecipeFactory", ($http) => {
+	.factory("AddRecipeFactory", ($http, AuthFactory) => {
 		const FB_URL = "https://homebrew-buddy-53153.firebaseio.com";
 		let styles;
 		let fermentables;
@@ -51,7 +51,8 @@ angular.module("app")
 			getYeast () {
 				return yeast;
 			},
-			addNewRecipe (key, user, recipe) {
+			addNewRecipe (token, user, recipe) {
+				let currentUser = AuthFactory.currentUser();
 				let totalIBU = 0;
 				let totalGravityUnits = parseInt(((recipe.targetOG - 1) * 1000) * recipe.batchSize);
 				console.log("tgu: ", totalGravityUnits);
@@ -64,7 +65,7 @@ angular.module("app")
 					console.log("cf: ", correctionFactor);
 				};
 
-				for (var key in recipe.hops) {
+				for (let key in recipe.hops) {
 					switch (parseInt(recipe.hops[key].boil)) {
 						case 60:
 							recipe.hops[key].utilization = 0.2697;
@@ -108,7 +109,7 @@ angular.module("app")
 					}
 				};
 
-				for (var key in recipe.hops) {
+				for (let key in recipe.hops) {
 					let contributedIBU;
 					if (recipe.hops[key].utilization == 0) {
 						contributedIBU = 0;
@@ -122,7 +123,7 @@ angular.module("app")
 					}}
 				recipe.totalIBU = totalIBU;
 
-				for (var key in recipe.grainBill) {
+				for (let key in recipe.grainBill) {
 					let gravityNeeded = ((recipe.grainBill[key].percent / 100) * totalGravityUnits);
 					console.log("gravity needed: ", gravityNeeded);
 					recipe.grainBill[key].grainInLbs =
@@ -131,8 +132,8 @@ angular.module("app")
 
 				console.log("recipe: ", recipe);
 
-				return
-					$http.post(`${FB_URL}/users/${user}/recipes.json?auth=${key}`, recipe);
+				return $http
+					.post(`${FB_URL}/users/${currentUser.userId}/recipes.json?auth=${currentUser.auth}`, recipe);
 			}
 		}
 	})
