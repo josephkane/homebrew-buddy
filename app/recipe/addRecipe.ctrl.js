@@ -3,10 +3,8 @@ angular.module("app")
 		const addCtrl = this;
 		let currentUser = AuthFactory.currentUser();
 
-		addCtrl.grainBill = {};
-		addCtrl.grainCounter = [];
-		addCtrl.hopsBill = {};
-		addCtrl.hopsCounter = [];
+		addCtrl.grainBill = [];
+		addCtrl.hopsBill = [];
 
 		AddRecipeFactory.styles().then(res => addCtrl.stylesArray = res);
 		AddRecipeFactory.fermentables(currentUser.auth).then(res => addCtrl.fermentablesArray = res);
@@ -18,16 +16,24 @@ angular.module("app")
 		}
 
 		addCtrl.addFermentable = function () {
-			addCtrl.grainCounter.push({})
+			addCtrl.grainBill.push({});
 		}
 
 		addCtrl.addHops = function () {
-			addCtrl.hopsCounter.push({})
+			addCtrl.hopsBill.push({});
+		}
+
+		addCtrl.deleteFerm = function (obj) {
+			let deleteIndex = addCtrl.grainBill.indexOf(obj);
+			addCtrl.grainBill.splice(deleteIndex, 1);
+		}
+
+		addCtrl.deleteHop = function (obj) {
+			let deleteIndex = addCtrl.hopsBill.indexOf(obj);
+			addCtrl.hopsBill.splice(deleteIndex, 1);
 		}
 
 		addCtrl.addNew = function () {
-			addCtrl.grainBill = addCtrl.fermentable;
-			addCtrl.hopsBill = addCtrl.hops;
 
 			let recipe = {
 				name: addCtrl.name,
@@ -36,7 +42,7 @@ angular.module("app")
 				targetOG: parseFloat(addCtrl.targetOG),
 				batchSize: parseFloat(addCtrl.batchSize),
 				mashTemp: parseFloat(addCtrl.mashTemp),
-				mashEff: parseInt(addCtrl.mashEff) / 100,
+				mashEff: parseInt(addCtrl.mashEff),
 				grainBill: addCtrl.grainBill,
 				hops: addCtrl.hopsBill,
 				yeast: {
@@ -46,7 +52,7 @@ angular.module("app")
 				}
 			};
 			console.log("recipe: ", recipe);
-			AddRecipeFactory.addNewRecipe(currentUser.auth, currentUser.userId, recipe)
+			AddRecipeFactory.addNewRecipe(recipe)
 				.then($location.path.bind($location, `/profile/${currentUser.userId}`))
 				.then($timeout);
 		}
