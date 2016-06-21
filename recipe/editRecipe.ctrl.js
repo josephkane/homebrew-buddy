@@ -15,6 +15,7 @@ angular.module("app")
 		AddRecipeFactory.fermentables(currentUser.auth).then(res => editCtrl.fermentablesArray = res.data.map((ferm) => ferm.name));
 		AddRecipeFactory.hops(currentUser.auth).then(res => editCtrl.hopsArray = res.data.map((hop) => hop.name));
 		AddRecipeFactory.yeast().then(res => editCtrl.yeastArray = res.data.map((yeast) => yeast.name));
+		AddRecipeFactory.srm().then(res => editCtrl.srmArray = res.data);
 
 		editCtrl.addFermentable = function () {
 			editCtrl.recipe.grainBill.push({});

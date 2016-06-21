@@ -16,3 +16,9 @@
 .recipe-card {
 	border: 1px solid grey;
 }
+
+.srm-box {
+	width: 70px;
+	height: 70px;
+	border-radius: 5px;
+}
