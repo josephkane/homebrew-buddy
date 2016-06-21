@@ -10,6 +10,7 @@ angular.module("app")
 		AddRecipeFactory.fermentables(currentUser.auth).then(res => addCtrl.fermentablesArray = res.data.map((ferm) => ferm.name));
 		AddRecipeFactory.hops(currentUser.auth).then(res => addCtrl.hopsArray = res.data.map((hop) => hop.name));
 		AddRecipeFactory.yeast().then(res => addCtrl.yeastArray = res.data.map((yeast) => yeast.name));
+		AddRecipeFactory.srm().then(res => addCtrl.srmArray = res.data);
 
 		addCtrl.backToProfile = function () {
 			$location.path(`/profile/${currentUser.userId}`);

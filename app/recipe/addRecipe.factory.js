@@ -5,6 +5,7 @@ angular.module("app")
 		let fermentables;
 		let hops;
 		let yeast;
+		let srm;
 
 		return {
 			styles () {
@@ -53,9 +54,23 @@ angular.module("app")
 			getYeast () {
 				return yeast;
 			},
+			srm () {
+				let currentUser = AuthFactory.currentUser()
+				return $http
+					.get(`${FB_URL}/srm.json?auth=${currentUser.auth}`)
+						.then(res => {
+							srm = res.data;
+							return srm;
+					})
+			},
+			getSRM () {
+				return srm;
+			},
 			addNewRecipe (recipe) {
 				let currentUser = AuthFactory.currentUser();
+				let srmHex;
 				let totalIBU = 0;
+				let totalSRM = 0;
 				let totalGravityUnits = parseInt(((recipe.targetOG - 1) * 1000) * recipe.batchSize);
 
 
@@ -63,7 +78,7 @@ angular.module("app")
 					for (let grain in fermentables.data) {
 						if (recipe.grainBill[ferm].name === fermentables.data[grain].name) {
 							recipe.grainBill[ferm].potential = fermentables.data[grain].potential;
-							recipe.grainBill[ferm].srm = fermentables.data[grain].srm;
+							recipe.grainBill[ferm].srm = fermentables.data[grain].srmId;
 						}
 					}
 				};
@@ -145,6 +160,20 @@ angular.module("app")
 					let gravityNeeded = ((recipe.grainBill[key].percent / 100) * totalGravityUnits);
 					grainInLbs = (gravityNeeded / ((recipe.grainBill[key].potential - 1) * 1000) / (recipe.mashEff / 100));
 					recipe.grainBill[key].grainInLbs = Math.round((grainInLbs + 0.00001) * 100) / 100;
+				}
+
+				for (let key in recipe.grainBill) {
+					let mcu = (recipe.grainBill[key].grainInLbs * recipe.grainBill[key].srm) / recipe.batchSize;
+					let contributedSRM = 1.4922 * (Math.pow(mcu, 0.6859))
+					recipe.grainBill[key].contributedSRM = contributedSRM;
+					totalSRM += contributedSRM
+				}
+				recipe.totalSRM = Math.round(totalSRM);
+
+				for (let key in srm.data) {
+					if (srm.data[key].srm === recipe.totalSRM) {
+						recipe.srmHex = srm.data[key].color;
+					}
 				}
 
 				console.log("recipe: ", recipe);
