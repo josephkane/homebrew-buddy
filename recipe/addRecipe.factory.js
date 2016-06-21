@@ -11,7 +11,7 @@ angular.module("app")
 				return $http
 					.get("http://api.brewerydb.com/v2/styles/?key=47e0d3ca6616a3f10fa45c87f1787825")
 						.then(res => {
-							styles = res.data.data;
+							styles = res.data;
 							return styles;
 					});
 			},
@@ -46,7 +46,7 @@ angular.module("app")
 				return $http
 					.get("http://api.brewerydb.com/v2/yeasts/?key=47e0d3ca6616a3f10fa45c87f1787825")
 						.then(res => {
-							yeast = res.data.data;
+							yeast = res.data;
 							return yeast;
 					})
 			},
@@ -65,6 +65,13 @@ angular.module("app")
 							recipe.grainBill[ferm].potential = fermentables.data[grain].potential;
 							recipe.grainBill[ferm].srm = fermentables.data[grain].srm;
 						}
+					}
+				};
+
+				for (let y in yeast.data) {
+					if (recipe.yeast.name === yeast.data[y].name) {
+						recipe.yeast.productId = yeast.data[y].productId;
+						recipe.yeast.supplier = yeast.data[y].supplier;
 					}
 				};
 
@@ -123,6 +130,7 @@ angular.module("app")
 					if (recipe.hops[key].utilization == 0) {
 						contributedIBU = 0;
 						totalIBU += contributedIBU;
+						recipe.hops[key].contributedIBU = contributedIBU;
 					} else {
 					contributedIBU = ((parseFloat(recipe.hops[key].oz)
 						* (recipe.hops[key].utilization)

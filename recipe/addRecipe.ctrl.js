@@ -6,10 +6,10 @@ angular.module("app")
 		addCtrl.grainBill = [];
 		addCtrl.hopsBill = [];
 
-		AddRecipeFactory.styles().then(res => addCtrl.stylesArray = res);
+		AddRecipeFactory.styles().then(res => addCtrl.stylesArray = res.data.map((style) => style.shortName));
 		AddRecipeFactory.fermentables(currentUser.auth).then(res => addCtrl.fermentablesArray = res.data.map((ferm) => ferm.name));
 		AddRecipeFactory.hops(currentUser.auth).then(res => addCtrl.hopsArray = res.data.map((hop) => hop.name));
-		AddRecipeFactory.yeast().then(res => addCtrl.yeastArray = res);
+		AddRecipeFactory.yeast().then(res => addCtrl.yeastArray = res.data.map((yeast) => yeast.name));
 
 		addCtrl.backToProfile = function () {
 			$location.path(`/profile/${currentUser.userId}`);
@@ -46,8 +46,7 @@ angular.module("app")
 				grainBill: addCtrl.grainBill,
 				hops: addCtrl.hopsBill,
 				yeast: {
-					info: addCtrl.yeast,
-					name: addCtrl.yeast.name,
+					name: addCtrl.yeast,
 					starter: addCtrl.yeastStarter
 				}
 			};

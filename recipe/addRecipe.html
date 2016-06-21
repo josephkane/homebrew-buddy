@@ -16,7 +16,9 @@
 
 			<div class="form-group">
 				<label>Style:</label>
-				<select ng-model="addCtrl.style" ng-options="style.shortName for style in addCtrl.stylesArray | orderBy: 'name'">
+				<select
+					ng-model="addCtrl.style"
+					ng-options="s as s for s in addCtrl.stylesArray | orderBy: 'name'">
 				</select>
 			</div>
 
@@ -126,9 +128,13 @@
 <!--YEAST-->
 			<div>
 				<label>Yeast:</label>
-				<select ng-model="addCtrl.yeast" ng-options="yeast.name for yeast in addCtrl.yeastArray">
+				<select ng-model="addCtrl.yeast" ng-options="y as y for y in addCtrl.yeastArray">
 				</select>
-				<input type="checkbox" ng-model="addCtrl.yeastStarter">Starter?
+				<input
+					type="checkbox"
+					ng-model="addCtrl.yeastStarter"
+					ng-true-value="'YES'"
+					ng-false-value="'NO'">Starter?
 			</div>
 		</div>
 		<div>
