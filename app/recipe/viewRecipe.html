@@ -5,9 +5,10 @@
 	<div>
 		<h2>{{viewCtrl.recipe.name}}</h2>
 		<h5>{{viewCtrl.recipe.description}}</h5>
-		<p>{{viewCtrl.recipe.style.shortName}}</p>
+		<p>Style: <span class="style">{{viewCtrl.recipe.style.shortName}}</span></p>
 		<ul>
 			<li>Target OG: {{viewCtrl.recipe.targetOG}}</li>
+			<li>IBU: {{viewCtrl.recipe.totalIBU}}</li>
 			<li>Mash Temp: {{viewCtrl.recipe.mashTemp}}</li>
 			<li>Mash Eff: {{viewCtrl.recipe.mashEff}}</li>
 			<li>Batch Size: {{viewCtrl.recipe.batchSize}}</li>
@@ -19,16 +20,20 @@
 			<thead>
 				<tr>
 					<th>Fermentables</th>
-					<th>% of Grain Bill</th>
+					<th>Grain %</th>
+					<th>Grain Weight (lbs)</th>
 				</tr>
 			</thead>
 			<tbody>
-				<tr ng-repeat="ferm in viewCtrl.recipe.grainBill | toArray">
+				<tr ng-repeat="ferm in viewCtrl.recipe.grainBill">
 					<td>
 						{{ferm.name}}
 					</td>
 					<td>
 						{{ferm.percent}}
+					</td>
+					<td>
+						{{ferm.grainInLbs}}
 					</td>
 				</tr>
 			</tbody>
@@ -41,10 +46,11 @@
 					<th>Oz.</th>
 					<th>AA%</th>
 					<th>Boil Time</th>
+					<th>Contributed IBU</th>
 				</tr>
 			</thead>
 			<tbody>
-				<tr ng-repeat="hop in viewCtrl.recipe.hops | toArray">
+				<tr ng-repeat="hop in viewCtrl.recipe.hops">
 					<td>
 						{{hop.name}}
 					</td>
@@ -56,6 +62,9 @@
 					</td>
 					<td>
 						{{hop.boil}}
+					</td>
+					<td>
+						{{hop.contributedIBU}}
 					</td>
 				</tr>
 			</tbody>
