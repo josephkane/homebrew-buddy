@@ -11,10 +11,28 @@ angular.module("app")
 			editCtrl.recipe = snap.val();
 		})
 
-		AddRecipeFactory.styles().then(res => editCtrl.stylesArray = res);
-		AddRecipeFactory.fermentables(currentUser.auth).then(res => editCtrl.fermentablesArray = res);
-		AddRecipeFactory.hops(currentUser.auth).then(res => editCtrl.hopsArray = res);
-		AddRecipeFactory.yeast().then(res => editCtrl.yeastArray = res);
+		AddRecipeFactory.styles().then(res => editCtrl.stylesArray = res.data.map((style) => style.shortName));
+		AddRecipeFactory.fermentables(currentUser.auth).then(res => editCtrl.fermentablesArray = res.data.map((ferm) => ferm.name));
+		AddRecipeFactory.hops(currentUser.auth).then(res => editCtrl.hopsArray = res.data.map((hop) => hop.name));
+		AddRecipeFactory.yeast().then(res => editCtrl.yeastArray = res.data.map((yeast) => yeast.name));
+
+		editCtrl.addFermentable = function () {
+			editCtrl.recipe.grainBill.push({});
+		}
+
+		editCtrl.addHops = function () {
+			editCtrl.recipe.hops.push({});
+		}
+
+		editCtrl.deleteFerm = function (obj) {
+			let deleteIndex = editCtrl.recipe.grainBill.indexOf(obj);
+			editCtrl.recipe.grainBill.splice(deleteIndex, 1);
+		}
+
+		editCtrl.deleteHop = function (obj) {
+			let deleteIndex = editCtrl.recipe.hops.indexOf(obj);
+			editCtrl.recipe.hops.splice(deleteIndex, 1);
+		}
 
 		editCtrl.updateRecipe = function () {
 			let recipe = {
@@ -25,29 +43,15 @@ angular.module("app")
 				batchSize: editCtrl.recipe.batchSize,
 				mashTemp: editCtrl.recipe.mashTemp,
 				mashEff: editCtrl.recipe.mashEff,
-				grainBill: [
-					{
-						info: editCtrl.recipe.grainBill[0].info,
-						percentage: editCtrl.recipe.grainBill[0].percentage,
-						name: editCtrl.recipe.grainBill[0].info.name
-					}
-				],
-				hops: [
-					{
-						info: editCtrl.recipe.hops[0].info,
-						aa: editCtrl.recipe.hops[0].aa,
-						boil: editCtrl.recipe.hops[0].boil,
-						name: editCtrl.recipe.hops[0].info.name
-					}
-				],
+				grainBill: editCtrl.recipe.grainBill,
+				hops: editCtrl.recipe.hops,
 				yeast: {
-					info: editCtrl.recipe.yeast,
 					name: editCtrl.recipe.yeast.name,
 					starter: editCtrl.recipe.yeast.starter
 				}
 			};
 			console.log("recipe: ", recipe);
-			EditRecipeFactory.updateRecipe(currentUser, $routeParams.id, recipe)
+			EditRecipeFactory.updateRecipe($routeParams.id, recipe)
 				.then($location.path.bind($location, `/profile/${currentUser.userId}`))
 				.then($timeout);
 		}
