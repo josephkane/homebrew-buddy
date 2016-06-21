@@ -171,7 +171,9 @@ angular.module("app")
 				recipe.totalSRM = Math.round(totalSRM);
 
 				for (let key in srm.data) {
-					if (srm.data[key].srm === recipe.totalSRM) {
+					if (recipe.totalSRM > 40) {
+						recipe.srmHex = "#36080A"
+					} else if (srm.data[key].srm === recipe.totalSRM) {
 						recipe.srmHex = srm.data[key].color;
 					}
 				}
