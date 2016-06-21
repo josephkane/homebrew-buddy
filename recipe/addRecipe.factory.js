@@ -57,14 +57,11 @@ angular.module("app")
 				let currentUser = AuthFactory.currentUser();
 				let totalIBU = 0;
 				let totalGravityUnits = parseInt(((recipe.targetOG - 1) * 1000) * recipe.batchSize);
-				console.log("tgu: ", totalGravityUnits);
-				console.log("fermentables: ", fermentables);
 
 
 				for (let ferm in recipe.grainBill) {
 					for (let grain in fermentables.data) {
 						if (recipe.grainBill[ferm].name === fermentables.data[grain].name) {
-							console.log("matched grain: ", fermentables.data[grain]);
 							recipe.grainBill[ferm].potential = fermentables.data[grain].potential;
 							recipe.grainBill[ferm].srm = fermentables.data[grain].srm;
 						}
@@ -72,11 +69,9 @@ angular.module("app")
 				};
 
 				if (recipe.targetOG <= 1.050) {
-					console.log("cf = 1");
 					correctionFactor = 1;
 				} else {
 					correctionFactor = (1 + ((recipe.targetOG - 1.050) / 0.2))
-					console.log("cf: ", correctionFactor);
 				};
 
 				for (let key in recipe.hops) {
@@ -133,16 +128,15 @@ angular.module("app")
 						* (recipe.hops[key].utilization)
 						* (parseFloat(recipe.hops[key].aa) / 100)
 						* (7489)) / (recipe.batchSize * correctionFactor));
-						recipe.hops[key].contributedIBU = contributedIBU;
+						recipe.hops[key].contributedIBU = Math.round(contributedIBU);
 						totalIBU += contributedIBU;
 					}}
-				recipe.totalIBU = totalIBU;
+				recipe.totalIBU = Math.round(totalIBU);
 
 				for (let key in recipe.grainBill) {
 					let gravityNeeded = ((recipe.grainBill[key].percent / 100) * totalGravityUnits);
-					console.log("gravity needed: ", gravityNeeded);
-					recipe.grainBill[key].grainInLbs =
-					(gravityNeeded / ((recipe.grainBill[key].potential - 1) * 1000) / (recipe.mashEff / 100))
+					grainInLbs = (gravityNeeded / ((recipe.grainBill[key].potential - 1) * 1000) / (recipe.mashEff / 100));
+					recipe.grainBill[key].grainInLbs = Math.round((grainInLbs + 0.00001) * 100) / 100;
 				}
 
 				console.log("recipe: ", recipe);
