@@ -1,16 +1,16 @@
 angular.module("app")
-	.controller("AddRecipeControl", function ($location, $timeout, AddRecipeFactory, AuthFactory) {
+	.controller("AddRecipeControl", function ($location, $timeout, RecipeFactory, AuthFactory) {
 		const addCtrl = this;
 		let currentUser = AuthFactory.currentUser();
 
 		addCtrl.grainBill = [];
 		addCtrl.hopsBill = [];
 
-		AddRecipeFactory.styles().then(res => addCtrl.stylesArray = res.data.map((style) => style.shortName));
-		AddRecipeFactory.fermentables(currentUser.auth).then(res => addCtrl.fermentablesArray = res.data.map((ferm) => ferm.name));
-		AddRecipeFactory.hops(currentUser.auth).then(res => addCtrl.hopsArray = res.data.map((hop) => hop.name));
-		AddRecipeFactory.yeast().then(res => addCtrl.yeastArray = res.data.map((yeast) => yeast.name));
-		AddRecipeFactory.srm().then(res => addCtrl.srmArray = res.data);
+		RecipeFactory.styles().then(res => addCtrl.stylesArray = res.data.map((style) => style.shortName));
+		RecipeFactory.fermentables(currentUser.auth).then(res => addCtrl.fermentablesArray = res.data.map((ferm) => ferm.name));
+		RecipeFactory.hops(currentUser.auth).then(res => addCtrl.hopsArray = res.data.map((hop) => hop.name));
+		RecipeFactory.yeast().then(res => addCtrl.yeastArray = res.data.map((yeast) => yeast.name));
+		RecipeFactory.srm().then(res => addCtrl.srmArray = res.data);
 
 		addCtrl.backToProfile = function () {
 			$location.path(`/profile/${currentUser.userId}`);
@@ -35,7 +35,7 @@ angular.module("app")
 		}
 
 		addCtrl.addNew = function () {
-
+			let calculatedRecipe;
 			let recipe = {
 				name: addCtrl.name,
 				description: addCtrl.description,
@@ -53,7 +53,9 @@ angular.module("app")
 				}
 			};
 			console.log("recipe: ", recipe);
-			AddRecipeFactory.addNewRecipe(recipe)
+			calculatedRecipe = RecipeFactory.calculateRecipe(recipe);
+
+			RecipeFactory.addNewRecipe(calculatedRecipe)
 				.then($location.path.bind($location, `/profile/${currentUser.userId}`))
 				.then($timeout);
 		}

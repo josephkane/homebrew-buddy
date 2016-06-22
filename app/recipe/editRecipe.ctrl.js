@@ -1,6 +1,6 @@
 angular.module("app")
 	.controller("EditRecipeControl", function (
-			AddRecipeFactory, EditRecipeFactory, $routeParams, AuthFactory, $location, $timeout
+			RecipeFactory, $routeParams, AuthFactory, $location, $timeout
 		) {
 		const editCtrl = this;
 		const FB_URL = "https://homebrew-buddy-53153.firebaseio.com";
@@ -11,11 +11,11 @@ angular.module("app")
 			editCtrl.recipe = snap.val();
 		})
 
-		AddRecipeFactory.styles().then(res => editCtrl.stylesArray = res.data.map((style) => style.shortName));
-		AddRecipeFactory.fermentables(currentUser.auth).then(res => editCtrl.fermentablesArray = res.data.map((ferm) => ferm.name));
-		AddRecipeFactory.hops(currentUser.auth).then(res => editCtrl.hopsArray = res.data.map((hop) => hop.name));
-		AddRecipeFactory.yeast().then(res => editCtrl.yeastArray = res.data.map((yeast) => yeast.name));
-		AddRecipeFactory.srm().then(res => editCtrl.srmArray = res.data);
+		RecipeFactory.styles().then(res => editCtrl.stylesArray = res.data.map((style) => style.shortName));
+		RecipeFactory.fermentables(currentUser.auth).then(res => editCtrl.fermentablesArray = res.data.map((ferm) => ferm.name));
+		RecipeFactory.hops(currentUser.auth).then(res => editCtrl.hopsArray = res.data.map((hop) => hop.name));
+		RecipeFactory.yeast().then(res => editCtrl.yeastArray = res.data.map((yeast) => yeast.name));
+		RecipeFactory.srm().then(res => editCtrl.srmArray = res.data);
 
 		editCtrl.addFermentable = function () {
 			editCtrl.recipe.grainBill.push({});
@@ -36,6 +36,7 @@ angular.module("app")
 		}
 
 		editCtrl.updateRecipe = function () {
+			let calculatedRecipe;
 			let recipe = {
 				name: editCtrl.recipe.name,
 				description: editCtrl.recipe.description,
@@ -53,7 +54,10 @@ angular.module("app")
 				}
 			};
 			console.log("recipe: ", recipe);
-			EditRecipeFactory.updateRecipe($routeParams.id, recipe)
+
+			calculatedRecipe = RecipeFactory.calculateRecipe(recipe);
+
+			RecipeFactory.updateRecipe($routeParams.id, calculatedRecipe)
 				.then($location.path.bind($location, `/profile/${currentUser.userId}`))
 				.then($timeout);
 		}
