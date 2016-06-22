@@ -71,8 +71,11 @@ angular.module("app")
 				let srmHex;
 				let totalIBU = 0;
 				let totalSRM = 0;
+				let approxABV = 0;
 				let totalGravityUnits = parseInt(((recipe.targetOG - 1) * 1000) * recipe.batchSize);
 
+				approxABV = (76.08 * (recipe.targetOG - recipe.targetFG) / (1.775 - recipe.targetOG)) * (recipe.targetFG / 0.794);
+				recipe.approxABV = Math.round((approxABV + 0.00001) * 100) / 100;
 
 				for (let ferm in recipe.grainBill) {
 					for (let grain in fermentables.data) {

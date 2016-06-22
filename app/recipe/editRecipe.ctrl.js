@@ -41,6 +41,7 @@ angular.module("app")
 				description: editCtrl.recipe.description,
 				style: editCtrl.recipe.style,
 				targetOG: editCtrl.recipe.targetOG,
+				targetFG: editCtrl.recipe.targetFG,
 				batchSize: editCtrl.recipe.batchSize,
 				mashTemp: editCtrl.recipe.mashTemp,
 				mashEff: editCtrl.recipe.mashEff,
