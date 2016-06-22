@@ -1,18 +1,86 @@
 angular.module("app")
-	.factory("EditRecipeFactory", ($http, AuthFactory, AddRecipeFactory) => {
+	.factory("RecipeFactory", ($http, AuthFactory) => {
 		const FB_URL = "https://homebrew-buddy-53153.firebaseio.com";
-		let fermentables = AddRecipeFactory.getFermentables();
-		let hops = AddRecipeFactory.getHops()
+		let styles;
+		let fermentables;
+		let hops;
+		let yeast;
+		let srm;
 
 		return {
+			styles () {
+				return $http
+					.get("http://api.brewerydb.com/v2/styles/?key=47e0d3ca6616a3f10fa45c87f1787825")
+						.then(res => {
+							styles = res.data;
+							return styles;
+					});
+			},
+			getStyles () {
+				return styles;
+			},
+			fermentables () {
+				let currentUser = AuthFactory.currentUser();
+				return $http
+					.get(`${FB_URL}/ferm.json?auth=${currentUser.auth}`)
+						.then(res => {
+							fermentables = res.data;
+							return fermentables;
+					})
+			},
+			getFermentables () {
+				return fermentables;
+			},
+			hops () {
+				let currentUser = AuthFactory.currentUser()
+				return $http
+					.get(`${FB_URL}/hops.json?auth=${currentUser.auth}`)
+						.then(res => {
+							hops = res.data;
+							return hops;
+					})
+			},
+			getHops () {
+				return hops;
+			},
+			yeast () {
+				return $http
+					.get("http://api.brewerydb.com/v2/yeasts/?key=47e0d3ca6616a3f10fa45c87f1787825")
+						.then(res => {
+							yeast = res.data;
+							return yeast;
+					})
+			},
+			getYeast () {
+				return yeast;
+			},
+			srm () {
+				let currentUser = AuthFactory.currentUser();
+				return $http
+					.get(`${FB_URL}/srm.json?auth=${currentUser.auth}`)
+						.then(res => {
+							srm = res.data;
+							return srm;
+					})
+			},
+			getSRM () {
+				return srm;
+			},
+			addNewRecipe (recipe) {
+				let currentUser = AuthFactory.currentUser();
+				return $http
+					.post(`${FB_URL}/users/${currentUser.userId}/recipes.json?auth=${currentUser.auth}`, recipe);
+			},
 			updateRecipe (recipeId, recipe) {
 				let currentUser = AuthFactory.currentUser();
-				let fermentables = AddRecipeFactory.getFermentables();
-				let hops = AddRecipeFactory.getHops();
-				let yeast = AddRecipeFactory.getYeast();
-				let srm = AddRecipeFactory.getSRM();
-				let totalSRM = 0;
+				return $http
+					.put(`${FB_URL}/users/${currentUser.userId}/recipes/${recipeId}.json?auth=${currentUser.auth}`, recipe)
+			},
+			calculateRecipe (recipe) {
+				let currentUser = AuthFactory.currentUser();
+				let srmHex;
 				let totalIBU = 0;
+				let totalSRM = 0;
 				let approxABV = 0;
 				let totalGravityUnits = parseInt(((recipe.targetOG - 1) * 1000) * recipe.batchSize);
 
@@ -112,8 +180,11 @@ angular.module("app")
 					let contributedSRM = 1.4922 * (Math.pow(mcu, 0.6859))
 					recipe.grainBill[key].contributedSRM = contributedSRM;
 					totalSRM += contributedSRM
+					console.log("c srm: ", contributedSRM);
+					console.log("grain in lbs: ", recipe.grainBill[key].grainInLbs);
 				}
 				recipe.totalSRM = Math.round(totalSRM);
+				console.log("total srm: ", totalSRM);
 
 				for (let key in srm.data) {
 					if (recipe.totalSRM > 40) {
@@ -125,8 +196,7 @@ angular.module("app")
 
 				console.log("recipe: ", recipe);
 
-				return $http
-					.put(`${FB_URL}/users/${currentUser.userId}/recipes/${recipeId}.json?auth=${currentUser.auth}`, recipe)
+				return recipe;
 			}
 		}
 	})
