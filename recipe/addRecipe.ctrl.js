@@ -41,6 +41,7 @@ angular.module("app")
 				description: addCtrl.description,
 				style: addCtrl.style,
 				targetOG: parseFloat(addCtrl.targetOG),
+				targetFG: parseFloat(addCtrl.targetFG),
 				batchSize: parseFloat(addCtrl.batchSize),
 				mashTemp: parseFloat(addCtrl.mashTemp),
 				mashEff: parseInt(addCtrl.mashEff),
