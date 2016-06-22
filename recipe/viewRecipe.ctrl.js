@@ -1,5 +1,5 @@
 angular.module("app")
-	.controller("ViewRecipeControl", function (ViewRecipeFactory, $routeParams, $location, AuthFactory) {
+	.controller("ViewRecipeControl", function ($routeParams, $location, AuthFactory) {
 		const viewCtrl = this;
 		let currentUser = AuthFactory.currentUser();
 

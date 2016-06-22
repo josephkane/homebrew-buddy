@@ -12,8 +12,8 @@ angular.module("app")
 		})
 
 		RecipeFactory.styles().then(res => editCtrl.stylesArray = res.data.map((style) => style.shortName));
-		RecipeFactory.fermentables(currentUser.auth).then(res => editCtrl.fermentablesArray = res.data.map((ferm) => ferm.name));
-		RecipeFactory.hops(currentUser.auth).then(res => editCtrl.hopsArray = res.data.map((hop) => hop.name));
+		RecipeFactory.fermentables().then(res => editCtrl.fermentablesArray = res.data.map((ferm) => ferm.name));
+		RecipeFactory.hops().then(res => editCtrl.hopsArray = res.data.map((hop) => hop.name));
 		RecipeFactory.yeast().then(res => editCtrl.yeastArray = res.data.map((yeast) => yeast.name));
 		RecipeFactory.srm().then(res => editCtrl.srmArray = res.data);
 
@@ -36,7 +36,7 @@ angular.module("app")
 		}
 
 		editCtrl.updateRecipe = function () {
-			let calculatedRecipe;
+			let currentUser = AuthFactory.currentUser();
 			let recipe = {
 				name: editCtrl.recipe.name,
 				description: editCtrl.recipe.description,
@@ -51,18 +51,18 @@ angular.module("app")
 				yeast: {
 					name: editCtrl.recipe.yeast.name,
 					starter: editCtrl.recipe.yeast.starter
-				}
+				},
+				comments: editCtrl.recipe.comments
 			};
 			console.log("recipe: ", recipe);
 
-			calculatedRecipe = RecipeFactory.calculateRecipe(recipe);
-
-			RecipeFactory.updateRecipe($routeParams.id, calculatedRecipe)
+			RecipeFactory.updateRecipe($routeParams.id, recipe)
 				.then($location.path.bind($location, `/profile/${currentUser.userId}`))
 				.then($timeout);
 		}
 
 		editCtrl.cancel = function () {
+			let currentUser = AuthFactory.currentUser();
 			$location.path(`/profile/${currentUser.userId}`)
 		}
 	})

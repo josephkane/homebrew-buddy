@@ -51,10 +51,12 @@
 		<div class="section-two">
 
 <!--FERMENTABLES-->
+		<div>
+			<h4>Fermentables:</h4>
 			<table class="table">
 				<thead>
 					<tr>
-						<th>Fermentables</th>
+						<th>Grain</th>
 						<th>% of Grain Bill</th>
 						<th></th>
 					</tr>
@@ -77,8 +79,11 @@
 				</tbody>
 			</table>
 			<div class="btn btn-default" ng-click="editCtrl.addFermentable()">Add Grain</div>
+		</div>
 
 <!--HOPS-->
+		<div>
+			<h4>Hops:</h4>
 			<table class="table">
 				<thead>
 					<tr>
@@ -127,25 +132,33 @@
 				</tbody>
 			</table>
 			<div class="btn btn-default" ng-click="editCtrl.addHops()">Add Hop</div>
+		</div>
 
 
 <!--YEAST-->
 			<div>
-				<label>Yeast:</label>
+				<h4>Yeast:</h4>
 				<select
 					ng-model="editCtrl.recipe.yeast.name"
 					ng-options="y as y for y in editCtrl.yeastArray">
 				</select>
 				<input
 					type="checkbox"
-					ng-model="editCtrl.yeastStarter"
+					ng-model="editCtrl.recipe.yeast.starter"
 					ng-true-value="'YES'"
 					ng-false-value="'NO'">Starter?
 			</div>
+
+			<div class="form-group">
+				<h4>Comments:</h4>
+				<textarea class="form-control" ng-model="editCtrl.recipe.comments"></textarea>
+			</div>
+
 		</div>
+
+
+
 		<div>
-
-
 			<button type="submit">Save</button>
 			<button type="button" ng-click="editCtrl.recipe.cancel()">Cancel</button>
 		</div>
