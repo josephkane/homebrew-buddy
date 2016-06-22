@@ -1,6 +1,6 @@
 angular.module("app")
 	.controller("ProfileControl", function (
-		AuthFactory, ProfileFactory, $timeout, $location, ViewRecipeFactory, $routeParams
+		AuthFactory, ProfileFactory, $timeout, $location, $routeParams
 		) {
 		const profileCtrl = this;
 		firebase.database().ref(`/users/${$routeParams.id}/recipes`).on("value", (snap) => {

@@ -50,89 +50,94 @@
 
 
 		<div class="section-two">
-
 <!--FERMENTABLES-->
-			<table class="table">
-				<thead>
-					<tr>
-						<th>Fermentables</th>
-						<th>% of Grain Bill</th>
-						<th></th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr ng-repeat="ferm in addCtrl.grainBill">
-						<td>
-							<select
-								ng-model="ferm.name"
-								ng-options="f as f for f in addCtrl.fermentablesArray">
-							</select>
-						</td>
-						<td>
-							<input type="text" ng-model="ferm.percent">
-						</td>
-						<td>
-							<div class="btn btn-default" ng-click="addCtrl.deleteFerm(ferm)">Delete</div>
-						</td>
-					</tr>
-				</tbody>
-			</table>
-			<div class="btn btn-default" ng-click="addCtrl.addFermentable()">Add Grain</div>
+			<div>
+			<h4>Fermentables</h4>
+				<table class="table">
+					<thead>
+						<tr>
+							<th>Grain</th>
+							<th>% of Grain Bill</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="ferm in addCtrl.grainBill">
+							<td>
+								<select
+									ng-model="ferm.name"
+									ng-options="f as f for f in addCtrl.fermentablesArray">
+								</select>
+							</td>
+							<td>
+								<input type="text" ng-model="ferm.percent">
+							</td>
+							<td>
+								<div class="btn btn-default" ng-click="addCtrl.deleteFerm(ferm)">Delete</div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<div class="btn btn-default" ng-click="addCtrl.addFermentable()">Add Grain</div>
+			</div>
 
 <!--HOPS-->
-			<table class="table">
-				<thead>
-					<tr>
-						<th>Hop</th>
-						<th>Oz.</th>
-						<th>AA%</th>
-						<th>Boil Time</th>
-						<th></th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr ng-repeat="hop in addCtrl.hopsBill">
-						<td>
-							<select
-								ng-model="hop.name"
-								ng-options="h as h for h in addCtrl.hopsArray">
-							</select>
-						</td>
-						<td>
-							<input type="text" ng-model="hop.oz">
-						</td>
-						<td>
-							<input type="text" ng-model="hop.aa">
-						</td>
-						<td>
-							<select ng-model="hop.boil">
-								<option name="boil" value=60>60</option>
-								<option name="boil" value=55>55</option>
-								<option name="boil" value=50>50</option>
-								<option name="boil" value=45>45</option>
-								<option name="boil" value=40>40</option>
-								<option name="boil" value=35>35</option>
-								<option name="boil" value=30>30</option>
-								<option name="boil" value=25>25</option>
-								<option name="boil" value=20>20</option>
-								<option name="boil" value=15>15</option>
-								<option name="boil" value=10>10</option>
-								<option name="boil" value=5>5</option>
-								<option name="boil" value=0>0</option>
-							</select>
-						</td>
-						<td>
-							<div class="btn btn-default" ng-click="addCtrl.deleteHop(hop)">Delete</div>
-						</td>
-					</tr>
-				</tbody>
-			</table>
-			<div class="btn btn-default" ng-click="addCtrl.addHops()">Add Hop</div>
+			<div>
+				<h4>Hops</h4>
+				<table class="table">
+					<thead>
+						<tr>
+							<th>Hop</th>
+							<th>Oz.</th>
+							<th>AA%</th>
+							<th>Boil Time</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="hop in addCtrl.hopsBill">
+							<td>
+								<select
+									ng-model="hop.name"
+									ng-options="h as h for h in addCtrl.hopsArray">
+								</select>
+							</td>
+							<td>
+								<input type="text" ng-model="hop.oz">
+							</td>
+							<td>
+								<input type="text" ng-model="hop.aa">
+							</td>
+							<td>
+								<select ng-model="hop.boil">
+									<option name="boil" value=60>60</option>
+									<option name="boil" value=55>55</option>
+									<option name="boil" value=50>50</option>
+									<option name="boil" value=45>45</option>
+									<option name="boil" value=40>40</option>
+									<option name="boil" value=35>35</option>
+									<option name="boil" value=30>30</option>
+									<option name="boil" value=25>25</option>
+									<option name="boil" value=20>20</option>
+									<option name="boil" value=15>15</option>
+									<option name="boil" value=10>10</option>
+									<option name="boil" value=5>5</option>
+									<option name="boil" value=0>0</option>
+								</select>
+							</td>
+							<td>
+								<div class="btn btn-default" ng-click="addCtrl.deleteHop(hop)">Delete</div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<div class="btn btn-default" ng-click="addCtrl.addHops()">Add Hop</div>
+			</div>
 
 
 <!--YEAST-->
 			<div>
-				<label>Yeast:</label>
+				<h4>Yeast:</h4>
 				<select ng-model="addCtrl.yeast" ng-options="y as y for y in addCtrl.yeastArray">
 				</select>
 				<input
@@ -142,9 +147,13 @@
 					ng-false-value="'NO'">Starter?
 			</div>
 		</div>
+
+		<div class="form-group">
+			<h4>Comments:</h4>
+			<textarea class="form-control" ng-model="addCtrl.comments"></textarea>
+		</div>
+
 		<div>
-
-
 			<button type="submit">Add</button>
 			<button type="button" ng-click="addCtrl.cancel()">Cancel</button>
 		</div>
