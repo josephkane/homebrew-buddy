@@ -198,7 +198,16 @@ NAV STYLES
 }
 
 .headlines {
-	width: 50%;
+	width: 35%;
+}
+
+.headlines a:hover {
+	text-decoration: none;
+}
+
+.headlines a:visited {
+	text-decoration: none;
+	color: #414D5C;
 }
 
 .nav-tagline {
