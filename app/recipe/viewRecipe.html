@@ -2,22 +2,26 @@
 
 	<div class="brewsheet">
 		<div>
-			<h2>{{viewCtrl.recipe.name}}</h2>
+			<h2 class="recipe-name">{{viewCtrl.recipe.name}}</h2>
 			<h5>{{viewCtrl.recipe.description}}</h5>
-			<p>Style: <span class="style">{{viewCtrl.recipe.style}}</span></p>
-			<ul>
-				<li>Target OG: {{viewCtrl.recipe.targetOG}}</li>
-				<li>Target FG: {{viewCtrl.recipe.targetFG}}</li>
-				<li>Approximate ABV: {{viewCtrl.recipe.approxABV}}%</li>
-				<li>IBU: {{viewCtrl.recipe.totalIBU}}</li>
-				<li>Mash Temp: {{viewCtrl.recipe.mashTemp}}</li>
-				<li>Mash Eff: {{viewCtrl.recipe.mashEff}}</li>
-				<li>Batch Size: {{viewCtrl.recipe.batchSize}} gal.</li>
-			</ul>
+				<div class="utility-group">
+					<ul class="utility-info">
+						<li class="bold">Style: <span class="normal">{{viewCtrl.recipe.style}}</span></li>
+						<li class="bold">Target OG: <span class="normal">{{viewCtrl.recipe.targetOG}}</span></li>
+						<li class="bold">Target FG: <span class="normal">{{viewCtrl.recipe.targetFG}}</span></li>
+						<li class="bold">Approximate ABV: <span class="normal">{{viewCtrl.recipe.approxABV}}%</span></li>
+					</ul>
+					<ul class="utility-info">
+						<li class="bold">IBU: <span class="normal">{{viewCtrl.recipe.totalIBU}}</span></li>
+						<li class="bold">Mash Temp: <span class="normal">{{viewCtrl.recipe.mashTemp}}</span></li>
+						<li class="bold">Mash Eff: <span class="normal">{{viewCtrl.recipe.mashEff}}</span></li>
+						<li class="bold">Batch Size: <span class="normal">{{viewCtrl.recipe.batchSize}} gal.</span></li>
+					</ul>
+				</div>
 		</div>
 
 		<div>
-			<h4>Fermentables:</h4>
+			<h4 class="bold">Fermentables:</h4>
 			<table class="table table-bordered">
 				<thead>
 					<tr>
@@ -43,7 +47,7 @@
 		</div>
 
 		<div>
-		<h4>Hops:</h4>
+		<h4 class="bold">Hops:</h4>
 			<table class="table table-bordered">
 				<thead>
 					<tr>
@@ -77,19 +81,19 @@
 		</div>
 
 		<div>
-			<h4>Color:</h4>
+			<h4 class="bold">Color:</h4>
 			<p>SRM: {{viewCtrl.recipe.totalSRM}}</p>
 			<div class="srm-box" style="background-color: {{viewCtrl.recipe.srmHex}}"></div>
 		</div>
 
 		<div>
-			<h4>Yeast:</h4>
+			<h4 class="bold">Yeast:</h4>
 			<p>{{viewCtrl.recipe.yeast.name}} ({{viewCtrl.recipe.yeast.supplier}} {{viewCtrl.recipe.yeast.productId}})</p>
 			<p>Starter? <strong>{{viewCtrl.recipe.yeast.starter}}</strong></p>
 		</div>
 
 		<div ng-show="viewCtrl.recipe.comments">
-			<h4>Comments:</h4>
+			<h4 class="bold">Comments:</h4>
 			<p>{{viewCtrl.recipe.comments}}</p>
 		</div>
 
