@@ -1,5 +1,17 @@
 angular.module("app")
-	.factory("TaproomFactory", () => {
+	.factory("TaproomFactory", ($http, AuthFactory) => {
+		const FB_URL = "https://homebrew-buddy-53153.firebaseio.com";
 
-		return {};
+		return {
+			addUserComment (comment, id) {
+				let currentUser = AuthFactory.currentUser();
+				let userComment = {
+					comment: comment,
+					user: currentUser.email
+				}
+				console.log("userComment: ", userComment);
+				return $http
+					.post(`${FB_URL}/taproom/${id}/commComments.json?auth=${currentUser.auth}`, userComment)
+			}
+		};
 	})

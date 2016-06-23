@@ -1,5 +1,5 @@
 angular.module("app")
-	.controller("TapViewControl", function ($timeout, AuthFactory, $routeParams) {
+	.controller("TapViewControl", function ($timeout, AuthFactory, $routeParams, TaproomFactory) {
 		const tapViewCtrl = this;
 		let currentUser = AuthFactory.currentUser();
 
@@ -7,4 +7,8 @@ angular.module("app")
 			tapViewCtrl.recipe = snap.val();
 			$timeout();
 		})
+
+		tapViewCtrl.comment = function (comment) {
+			TaproomFactory.addUserComment(comment, $routeParams.id)
+		}
 	})
