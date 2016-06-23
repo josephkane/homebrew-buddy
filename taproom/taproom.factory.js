@@ -9,7 +9,6 @@ angular.module("app")
 					comment: comment,
 					user: currentUser.email
 				}
-				console.log("userComment: ", userComment);
 				return $http
 					.post(`${FB_URL}/taproom/${id}/commComments.json?auth=${currentUser.auth}`, userComment)
 			}

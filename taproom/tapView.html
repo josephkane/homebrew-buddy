@@ -1,4 +1,4 @@
-<div class="modal fade">
+<div class="modal fade comment-modal">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -18,7 +18,7 @@
         </form>
       </div>
       <div class="modal-footer">
-        <button class="btn btn-warning button" type="button" ng-click="tapViewCtrl.comment(userComment)" data-dismiss="modal">Comment</button>
+        <button class="btn btn-default button" type="button" ng-click="tapViewCtrl.comment(userComment)" data-dismiss="modal">Comment</button>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
@@ -28,22 +28,26 @@
 
 	<div class="brewsheet">
 		<div>
-			<h2>{{tapViewCtrl.recipe.name}}</h2>
+			<h2 class="recipe-name">{{tapViewCtrl.recipe.name}}</h2>
 			<h5>{{tapViewCtrl.recipe.description}}</h5>
-			<p>Style: <span class="style">{{tapViewCtrl.recipe.style}}</span></p>
-			<ul>
-				<li>Target OG: {{tapViewCtrl.recipe.targetOG}}</li>
-				<li>Target FG: {{tapViewCtrl.recipe.targetFG}}</li>
-				<li>Approximate ABV: {{tapViewCtrl.recipe.approxABV}}%</li>
-				<li>IBU: {{tapViewCtrl.recipe.totalIBU}}</li>
-				<li>Mash Temp: {{tapViewCtrl.recipe.mashTemp}}</li>
-				<li>Mash Eff: {{tapViewCtrl.recipe.mashEff}}</li>
-				<li>Batch Size: {{tapViewCtrl.recipe.batchSize}} gal.</li>
-			</ul>
+			<div class="utility-group">
+				<ul class="utility-info">
+					<li class="bold">Style: <span class="normal">{{tapViewCtrl.recipe.style}}</span></li>
+					<li class="bold">Target OG: <span class="normal">{{tapViewCtrl.recipe.targetOG}}</span></li>
+					<li class="bold">Target FG: <span class="normal">{{tapViewCtrl.recipe.targetFG}}</span></li>
+					<li class="bold">Approximate ABV: <span class="normal">{{tapViewCtrl.recipe.approxABV}}%</span></li>
+				</ul>
+				<ul class="utility-info">
+					<li class="bold">IBU: <span class="normal">{{tapViewCtrl.recipe.totalIBU}}</span></li>
+					<li class="bold">Mash Temp: <span class="normal">{{tapViewCtrl.recipe.mashTemp}}</span></li>
+					<li class="bold">Mash Eff: <span class="normal">{{tapViewCtrl.recipe.mashEff}}</span></li>
+					<li class="bold">Batch Size: <span class="normal">{{tapViewCtrl.recipe.batchSize}} gal.</span></li>
+				</ul>
+			</div>
 		</div>
 
 		<div>
-			<h4>Fermentables:</h4>
+			<h4 class="bold">Fermentables:</h4>
 			<table class="table table-bordered">
 				<thead>
 					<tr>
@@ -69,7 +73,7 @@
 		</div>
 
 		<div>
-		<h4>Hops:</h4>
+		<h4 class="bold">Hops:</h4>
 			<table class="table table-bordered">
 				<thead>
 					<tr>
@@ -103,29 +107,29 @@
 		</div>
 
 		<div>
-			<h4>Color:</h4>
+			<h4 class="bold">Color:</h4>
 			<p>SRM: {{tapViewCtrl.recipe.totalSRM}}</p>
 			<div class="srm-box" style="background-color: {{tapViewCtrl.recipe.srmHex}}"></div>
 		</div>
 
 		<div>
-			<h4>Yeast:</h4>
+			<h4 class="bold">Yeast:</h4>
 			<p>{{tapViewCtrl.recipe.yeast.name}} ({{tapViewCtrl.recipe.yeast.supplier}} {{tapViewCtrl.recipe.yeast.productId}})</p>
 			<p>Starter? <strong>{{tapViewCtrl.recipe.yeast.starter}}</strong></p>
 		</div>
 
 		<div ng-show="tapViewCtrl.recipe.comments">
-			<h4>Brewers Comments:</h4>
+			<h4 class="bold">Brewers Comments:</h4>
 			<p>{{tapViewCtrl.recipe.comments}}</p>
-			<h4>Community Comments:</h4>
+			<h4 class="bold">Community Comments:</h4>
+		</div>
 			<div
 				ng-if="tapViewCtrl.recipe.commComments"
-				class="form-control"
+				class="comment-container"
 				ng-repeat="comment in tapViewCtrl.recipe.commComments">
-				<h4 class="comment-headline">{{comment.comment}}</h4>
-				<h6 class="comment-user">From {{comment.user}}</h6>
+				<p class="comment-headline">{{comment.comment}}</p>
+				<p class="comment-user">From {{comment.user}}</p>
 			</div>
-		</div>
 
 		<div>
 			<button class="btn btn-default button" type="button" data-toggle="modal" data-target=".modal">Comment</button>

@@ -41,6 +41,14 @@ a:hover {
 	color: #F0EDDF;
 }
 
+.bold {
+	font-weight: bold;
+}
+
+.normal {
+	font-weight: normal;
+}
+
 /********************
 
 LANDING STYLES
@@ -117,9 +125,13 @@ PROFILE STYLES
 
 /********************
 
-VIEW STYLES
+VIEW/TAPVIEW STYLES
 
 ********************/
+
+.recipe-name {
+	font-weight: bold;
+}
 
 .srm-box {
 	width: 70px;
@@ -135,6 +147,36 @@ VIEW STYLES
 	box-shadow: 0px 0px 5px 5px rgba(252,251,238,.9);
 }
 
+.comment-container {
+	background-color: #fff;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	margin-bottom: 10px;
+}
+
+.comment-headline {
+	margin: 5px 0 5px 10px;
+}
+
+.comment-user {
+	margin: 0 0 5px 10px;
+	font-size: .7em;
+}
+
+.comment-modal {
+	z-index: 10000;
+}
+
+.utility-group {
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: space-around;
+}
+
+.utility-info {
+	list-style: none;
+	width: 50%;
+}
 
 /********************
 
@@ -180,13 +222,3 @@ NAV STYLES
 	margin-right: 20px;
 }
 
-/********************
-
-TAPVIEW STYLES
-
-********************/
-
-.comment-headline,
-.comment-user	{
-	margin: 0;
-}
