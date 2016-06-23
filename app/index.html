@@ -9,7 +9,7 @@
 	</head>
 	<body>
 		<div ng-app="app">
-			<div ng-include="'nav/nav.html'" ng-controller="NavControl as navCtrl"></div>
+			<div ng-include="'nav/nav.html'" ng-controller="NavControl as navCtrl" ng-show="navCtrl.currentUser"></div>
 			<div ng-view></div>
 		</div>
 
@@ -34,8 +34,14 @@
 		<script src="recipe/addRecipe.config.js"></script>
 		<script src="recipe/addRecipe.ctrl.js"></script>
 		<script src="recipe/viewRecipe.config.js"></script>
+		<script src="recipe/viewRecipe.factory.js"></script>
 		<script src="recipe/viewRecipe.ctrl.js"></script>
 		<script src="recipe/editRecipe.config.js"></script>
 		<script src="recipe/editRecipe.ctrl.js"></script>
+		<script src="taproom/taproom.config.js"></script>
+		<script src="taproom/taproom.ctrl.js"></script>
+		<script src="taproom/taproom.factory.js"></script>
+		<script src="taproom/tapView.ctrl.js"></script>
+		<script src="taproom/tapView.factory.js"></script>
 	</body>
 </html>

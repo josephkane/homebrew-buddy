@@ -1,5 +1,5 @@
 angular.module("app")
-	.factory("AuthFactory", ($location, $timeout, $http) => {
+	.factory("AuthFactory", ($location, $timeout, $http, NavFactory) => {
 		const FB_URL = "https://homebrew-buddy-53153.firebaseio.com"
 		let userId;
 		let userEmail;

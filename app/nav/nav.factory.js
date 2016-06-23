@@ -1,5 +1,16 @@
 angular.module("app")
 	.factory("NavFactory", () => {
+		let userEmail;
 
-		return {};
+		firebase.auth().onAuthStateChanged((user) => {
+			if (user) {
+				userEmail = user.email;
+			}
+		})
+
+		return {
+			currentUser () {
+				return userEmail;
+			},
+		};
 	})
