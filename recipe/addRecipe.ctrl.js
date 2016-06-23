@@ -11,10 +11,10 @@ angular.module("app")
 		RecipeFactory.yeast().then(res => addCtrl.yeastArray = res.data.map((yeast) => yeast.name));
 		RecipeFactory.srm().then(res => addCtrl.srmArray = res.data);
 
-		addCtrl.backToProfile = function () {
-			let currentUser = AuthFactory.currentUser();
-			$location.path(`/profile/${currentUser.userId}`);
-		}
+		// addCtrl.backToProfile = function () {
+		// 	let currentUser = AuthFactory.currentUser();
+		// 	$location.path(`/profile/${currentUser.userId}`);
+		// }
 
 		addCtrl.addFermentable = function () {
 			addCtrl.grainBill.push({});
@@ -62,7 +62,6 @@ angular.module("app")
 
 		addCtrl.cancel = function () {
 			let currentUser = AuthFactory.currentUser();
-			$location.path.bind($location, `/profile/${currentUser.userId}`);
-			$timeout();
+			$location.path(`/profile/${currentUser.userId}`);
 		}
 	})

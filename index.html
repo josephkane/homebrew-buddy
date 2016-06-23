@@ -9,8 +9,8 @@
 	</head>
 	<body>
 		<div ng-app="app">
-			<div ng-view>
-			</div>
+			<div ng-include="'nav/nav.html'" ng-controller="NavControl as navCtrl"></div>
+			<div ng-view></div>
 		</div>
 
 		<script src="lib/angular/angular.min.js"></script>
@@ -22,6 +22,8 @@
 		<script src="lib/bootstrap/dist/js/bootstrap.min.js"></script>
 		<script src="lib/firebase/firebase.js"></script>
 		<script src="main.js"></script>
+		<script src="nav/nav.ctrl.js"></script>
+		<script src="nav/nav.factory.js"></script>
 		<script src="auth/auth.config.js"></script>
 		<script src="auth/auth.ctrl.js"></script>
 		<script src="auth/auth.factory.js"></script>

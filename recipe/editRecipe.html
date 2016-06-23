@@ -1,166 +1,165 @@
-<h1>EDIT RECIPE</h1>
-
 <div class="main-content">
-	<form ng-submit="editCtrl.updateRecipe()">
+	<div class="brewsheet">
 
-		<div class="form-group">
-			<label>Name:</label>
-			<input class="form-control" type="text" ng-model="editCtrl.recipe.name">
-			<label>Description:</label>
-			<input class="form-control" type="text" ng-model="editCtrl.recipe.description">
-		</div>
-
-
-		<div class="section-one">
+		<form ng-submit="editCtrl.updateRecipe()">
 
 			<div class="form-group">
-				<label>Style:</label>
-				<select
-					ng-model="editCtrl.recipe.style"
-					ng-options="s as s for s in editCtrl.stylesArray | orderBy: 'name'">
-				</select>
+				<label>Name:</label>
+				<input class="form-control" type="text" ng-model="editCtrl.recipe.name">
+				<label>Description:</label>
+				<input class="form-control" type="text" ng-model="editCtrl.recipe.description">
 			</div>
 
-			<div class="form-group">
-				<label>Target OG:</label>
-				<input type="text" ng-model="editCtrl.recipe.targetOG">
+
+			<div class="section-one">
+
+				<div class="form-group">
+					<label>Style:</label>
+					<select
+						ng-model="editCtrl.recipe.style"
+						ng-options="s as s for s in editCtrl.stylesArray | orderBy: 'name'">
+					</select>
+				</div>
+
+				<div class="form-group">
+					<label>Target OG:</label>
+					<input type="text" ng-model="editCtrl.recipe.targetOG">
+				</div>
+
+				<div class="form-group">
+					<label>Target FG:</label>
+					<input type="text" ng-model="editCtrl.recipe.targetFG">
+				</div>
+
+				<div class="form-group">
+					<label>Batch size:</label>
+					<input type="text" ng-model="editCtrl.recipe.batchSize">
+				</div>
+
+				<div class="form-group">
+					<label>Mash temp:</label>
+					<input type="text" ng-model="editCtrl.recipe.mashTemp">
+				</div>
+
+				<div class="form-group">
+					<label>Efficiency:</label>
+					<input type="text" ng-model="editCtrl.recipe.mashEff">
+				</div>
 			</div>
 
-			<div class="form-group">
-				<label>Target FG:</label>
-				<input type="text" ng-model="editCtrl.recipe.targetFG">
-			</div>
 
-			<div class="form-group">
-				<label>Batch size:</label>
-				<input type="text" ng-model="editCtrl.recipe.batchSize">
-			</div>
+			<div class="section-two">
 
-			<div class="form-group">
-				<label>Mash temp:</label>
-				<input type="text" ng-model="editCtrl.recipe.mashTemp">
-			</div>
-
-			<div class="form-group">
-				<label>Efficiency:</label>
-				<input type="text" ng-model="editCtrl.recipe.mashEff">
-			</div>
-		</div>
-
-
-		<div class="section-two">
-
-<!--FERMENTABLES-->
-		<div>
-			<h4>Fermentables:</h4>
-			<table class="table">
-				<thead>
-					<tr>
-						<th>Grain</th>
-						<th>% of Grain Bill</th>
-						<th></th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr ng-repeat="ferm in editCtrl.recipe.grainBill">
-						<td>
-							<select
-								ng-model="ferm.name"
-								ng-options="f as f for f in editCtrl.fermentablesArray">
-							</select>
-						</td>
-						<td>
-							<input type="text" ng-model="ferm.percent">
-						</td>
-						<td>
-							<div class="btn btn-default" ng-click="editCtrl.deleteFerm(ferm)">Delete</div>
-						</td>
-					</tr>
-				</tbody>
-			</table>
-			<div class="btn btn-default" ng-click="editCtrl.addFermentable()">Add Grain</div>
-		</div>
-
-<!--HOPS-->
-		<div>
-			<h4>Hops:</h4>
-			<table class="table">
-				<thead>
-					<tr>
-						<th>Hop</th>
-						<th>Oz.</th>
-						<th>AA%</th>
-						<th>Boil Time</th>
-						<th></th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr ng-repeat="hop in editCtrl.recipe.hops">
-						<td>
-							<select
-								ng-model="hop.name"
-								ng-options="h as h for h in editCtrl.hopsArray">
-							</select>
-						</td>
-						<td>
-							<input type="text" ng-model="hop.oz">
-						</td>
-						<td>
-							<input type="text" ng-model="hop.aa">
-						</td>
-						<td>
-							<select ng-model="hop.boil">
-								<option name="boil" value=60>60</option>
-								<option name="boil" value=55>55</option>
-								<option name="boil" value=50>50</option>
-								<option name="boil" value=45>45</option>
-								<option name="boil" value=40>40</option>
-								<option name="boil" value=35>35</option>
-								<option name="boil" value=30>30</option>
-								<option name="boil" value=25>25</option>
-								<option name="boil" value=20>20</option>
-								<option name="boil" value=15>15</option>
-								<option name="boil" value=10>10</option>
-								<option name="boil" value=5>5</option>
-								<option name="boil" value=0>0</option>
-							</select>
-						</td>
-						<td>
-							<div class="btn btn-default" ng-click="editCtrl.deleteHop(hop)">Delete</div>
-						</td>
-					</tr>
-				</tbody>
-			</table>
-			<div class="btn btn-default" ng-click="editCtrl.addHops()">Add Hop</div>
-		</div>
-
-
-<!--YEAST-->
+	<!--FERMENTABLES-->
 			<div>
-				<h4>Yeast:</h4>
-				<select
-					ng-model="editCtrl.recipe.yeast.name"
-					ng-options="y as y for y in editCtrl.yeastArray">
-				</select>
-				<input
-					type="checkbox"
-					ng-model="editCtrl.recipe.yeast.starter"
-					ng-true-value="'YES'"
-					ng-false-value="'NO'">Starter?
+				<h4>Fermentables:</h4>
+				<table class="table">
+					<thead>
+						<tr>
+							<th>Grain</th>
+							<th>% of Grain Bill</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="ferm in editCtrl.recipe.grainBill">
+							<td>
+								<select
+									ng-model="ferm.name"
+									ng-options="f as f for f in editCtrl.fermentablesArray">
+								</select>
+							</td>
+							<td>
+								<input type="text" ng-model="ferm.percent">
+							</td>
+							<td>
+								<div class="btn btn-default button" ng-click="editCtrl.deleteFerm(ferm)">Delete</div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<div class="btn btn-default button" ng-click="editCtrl.addFermentable()">Add Grain</div>
 			</div>
 
-			<div class="form-group">
-				<h4>Comments:</h4>
-				<textarea class="form-control" ng-model="editCtrl.recipe.comments"></textarea>
+	<!--HOPS-->
+			<div>
+				<h4>Hops:</h4>
+				<table class="table">
+					<thead>
+						<tr>
+							<th>Hop</th>
+							<th>Oz.</th>
+							<th>AA%</th>
+							<th>Boil Time</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="hop in editCtrl.recipe.hops">
+							<td>
+								<select
+									ng-model="hop.name"
+									ng-options="h as h for h in editCtrl.hopsArray">
+								</select>
+							</td>
+							<td>
+								<input type="text" ng-model="hop.oz">
+							</td>
+							<td>
+								<input type="text" ng-model="hop.aa">
+							</td>
+							<td>
+								<select ng-model="hop.boil">
+									<option name="boil" value=60>60</option>
+									<option name="boil" value=55>55</option>
+									<option name="boil" value=50>50</option>
+									<option name="boil" value=45>45</option>
+									<option name="boil" value=40>40</option>
+									<option name="boil" value=35>35</option>
+									<option name="boil" value=30>30</option>
+									<option name="boil" value=25>25</option>
+									<option name="boil" value=20>20</option>
+									<option name="boil" value=15>15</option>
+									<option name="boil" value=10>10</option>
+									<option name="boil" value=5>5</option>
+									<option name="boil" value=0>0</option>
+								</select>
+							</td>
+							<td>
+								<div class="btn btn-default button" ng-click="editCtrl.deleteHop(hop)">Delete</div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<div class="btn btn-default button" ng-click="editCtrl.addHops()">Add Hop</div>
 			</div>
 
-		</div>
 
+	<!--YEAST-->
+				<div>
+					<h4>Yeast:</h4>
+					<select
+						ng-model="editCtrl.recipe.yeast.name"
+						ng-options="y as y for y in editCtrl.yeastArray">
+					</select>
+					<input
+						type="checkbox"
+						ng-model="editCtrl.recipe.yeast.starter"
+						ng-true-value="'YES'"
+						ng-false-value="'NO'">Starter?
+				</div>
 
+				<div class="form-group">
+					<h4>Comments:</h4>
+					<textarea class="form-control" ng-model="editCtrl.recipe.comments"></textarea>
+				</div>
 
-		<div>
-			<button type="submit">Save</button>
-			<button type="button" ng-click="editCtrl.recipe.cancel()">Cancel</button>
-		</div>
-	</form>
+			</div>
+
+			<div>
+				<button class="btn btn-default button" type="submit">Save</button>
+				<div class="btn btn-default button" ng-click="editCtrl.cancel()">Cancel</div>
+			</div>
+		</form>
+	</div>
 </div>

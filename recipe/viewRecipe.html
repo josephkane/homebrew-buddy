@@ -1,101 +1,101 @@
-<h1>VIEW</h1>
-<button type="click" ng-click="viewCtrl.backToProfile()">Back to profile</button>
-
 <div class="main-content">
-	<div>
-		<h2>{{viewCtrl.recipe.name}}</h2>
-		<h5>{{viewCtrl.recipe.description}}</h5>
-		<p>Style: <span class="style">{{viewCtrl.recipe.style}}</span></p>
-		<ul>
-			<li>Target OG: {{viewCtrl.recipe.targetOG}}</li>
-			<li>Target FG: {{viewCtrl.recipe.targetFG}}</li>
-			<li>Approximate ABV: {{viewCtrl.recipe.approxABV}}%</li>
-			<li>IBU: {{viewCtrl.recipe.totalIBU}}</li>
-			<li>Mash Temp: {{viewCtrl.recipe.mashTemp}}</li>
-			<li>Mash Eff: {{viewCtrl.recipe.mashEff}}</li>
-			<li>Batch Size: {{viewCtrl.recipe.batchSize}} gal.</li>
-		</ul>
-	</div>
 
-	<div>
-		<h4>Fermentables</h4>
-		<table class="table table-bordered">
-			<thead>
-				<tr>
-					<th>Grain</th>
-					<th>Grain %</th>
-					<th>Grain Weight (lbs)</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr ng-repeat="ferm in viewCtrl.recipe.grainBill">
-					<td>
-						{{ferm.name}}
-					</td>
-					<td>
-						{{ferm.percent}}
-					</td>
-					<td>
-						{{ferm.grainInLbs}}
-					</td>
-				</tr>
-			</tbody>
-		</table>
-	</div>
+	<div class="brewsheet">
+		<div>
+			<h2>{{viewCtrl.recipe.name}}</h2>
+			<h5>{{viewCtrl.recipe.description}}</h5>
+			<p>Style: <span class="style">{{viewCtrl.recipe.style}}</span></p>
+			<ul>
+				<li>Target OG: {{viewCtrl.recipe.targetOG}}</li>
+				<li>Target FG: {{viewCtrl.recipe.targetFG}}</li>
+				<li>Approximate ABV: {{viewCtrl.recipe.approxABV}}%</li>
+				<li>IBU: {{viewCtrl.recipe.totalIBU}}</li>
+				<li>Mash Temp: {{viewCtrl.recipe.mashTemp}}</li>
+				<li>Mash Eff: {{viewCtrl.recipe.mashEff}}</li>
+				<li>Batch Size: {{viewCtrl.recipe.batchSize}} gal.</li>
+			</ul>
+		</div>
 
-	<div>
-	<h4>Hops</h4>
-		<table class="table table-bordered">
-			<thead>
-				<tr>
-					<th>Hop</th>
-					<th>Oz.</th>
-					<th>AA%</th>
-					<th>Boil Time</th>
-					<th>Contributed IBU</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr ng-repeat="hop in viewCtrl.recipe.hops">
-					<td>
-						{{hop.name}}
-					</td>
-					<td>
-						{{hop.oz}}
-					</td>
-					<td>
-						{{hop.aa}}
-					</td>
-					<td>
-						{{hop.boil}}
-					</td>
-					<td>
-						{{hop.contributedIBU}}
-					</td>
-				</tr>
-			</tbody>
-		</table>
-	</div>
+		<div>
+			<h4>Fermentables:</h4>
+			<table class="table table-bordered">
+				<thead>
+					<tr>
+						<th>Grain</th>
+						<th>Grain %</th>
+						<th>Grain Weight (lbs)</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="ferm in viewCtrl.recipe.grainBill">
+						<td>
+							{{ferm.name}}
+						</td>
+						<td>
+							{{ferm.percent}}
+						</td>
+						<td>
+							{{ferm.grainInLbs}}
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
 
-	<div>
-		<h4>Color:</h4>
-		<p>SRM: {{viewCtrl.recipe.totalSRM}}</p>
-		<div class="srm-box" style="background-color: {{viewCtrl.recipe.srmHex}}"></div>
-	</div>
+		<div>
+		<h4>Hops:</h4>
+			<table class="table table-bordered">
+				<thead>
+					<tr>
+						<th>Hop</th>
+						<th>Oz.</th>
+						<th>AA%</th>
+						<th>Boil Time</th>
+						<th>Contributed IBU</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="hop in viewCtrl.recipe.hops">
+						<td>
+							{{hop.name}}
+						</td>
+						<td>
+							{{hop.oz}}
+						</td>
+						<td>
+							{{hop.aa}}
+						</td>
+						<td>
+							{{hop.boil}}
+						</td>
+						<td>
+							{{hop.contributedIBU}}
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
 
-	<div>
-		<h4>Yeast:</h4>
-		<p>{{viewCtrl.recipe.yeast.name}} ({{viewCtrl.recipe.yeast.supplier}} {{viewCtrl.recipe.yeast.productId}})</p>
-		<p>Starter? <strong>{{viewCtrl.recipe.yeast.starter}}</strong></p>
-	</div>
+		<div>
+			<h4>Color:</h4>
+			<p>SRM: {{viewCtrl.recipe.totalSRM}}</p>
+			<div class="srm-box" style="background-color: {{viewCtrl.recipe.srmHex}}"></div>
+		</div>
 
-	<div ng-show="viewCtrl.recipe.comments">
-		<h4>Comments:</h4>
-		<p>{{viewCtrl.recipe.comments}}</p>
-	</div>
+		<div>
+			<h4>Yeast:</h4>
+			<p>{{viewCtrl.recipe.yeast.name}} ({{viewCtrl.recipe.yeast.supplier}} {{viewCtrl.recipe.yeast.productId}})</p>
+			<p>Starter? <strong>{{viewCtrl.recipe.yeast.starter}}</strong></p>
+		</div>
 
-	<div>
-		<button type="click" ng-click="viewCtrl.editRecipe()">Edit</button>
+		<div ng-show="viewCtrl.recipe.comments">
+			<h4>Comments:</h4>
+			<p>{{viewCtrl.recipe.comments}}</p>
+		</div>
+
+		<div>
+			<button class="btn btn-default button" type="button" ng-click="viewCtrl.editRecipe()">Edit</button>
+		</div>
 	</div>
 
 </div>
