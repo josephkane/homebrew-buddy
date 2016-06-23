@@ -38,6 +38,8 @@ angular.module("app")
 		editCtrl.updateRecipe = function () {
 			let currentUser = AuthFactory.currentUser();
 			let recipe = {
+				uid: currentUser.userId,
+				brewer: currentUser.email,
 				name: editCtrl.recipe.name,
 				description: editCtrl.recipe.description,
 				style: editCtrl.recipe.style,

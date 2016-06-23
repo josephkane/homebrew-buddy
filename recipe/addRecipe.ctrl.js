@@ -37,6 +37,8 @@ angular.module("app")
 		addCtrl.addNew = function () {
 			let currentUser = AuthFactory.currentUser();
 			let recipe = {
+				uid: currentUser.userId,
+				brewer: currentUser.email,
 				name: addCtrl.name,
 				description: addCtrl.description,
 				style: addCtrl.style,

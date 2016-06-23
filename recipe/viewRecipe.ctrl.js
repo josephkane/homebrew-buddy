@@ -1,5 +1,5 @@
 angular.module("app")
-	.controller("ViewRecipeControl", function ($routeParams, $location, AuthFactory) {
+	.controller("ViewRecipeControl", function ($routeParams, $location, AuthFactory, ViewRecipeFactory, $timeout) {
 		const viewCtrl = this;
 		let currentUser = AuthFactory.currentUser();
 
@@ -13,5 +13,11 @@ angular.module("app")
 
 		viewCtrl.editRecipe = function () {
 			$location.path(`/editRecipe/${$routeParams.id}`)
+		}
+
+		viewCtrl.publishRecipe = function () {
+			ViewRecipeFactory.tapRecipe(viewCtrl.recipe)
+				.then($location.path.bind($location, "/taproom"))
+				.then($timeout)
 		}
 	})
