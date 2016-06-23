@@ -1,0 +1,12 @@
+<div class="nav-bar">
+	<div class="headlines">
+		<h1 class="nav-headline">Homebrew Buddy!</h1>
+		<h4 class="nav-tagline">Your own personal brewing secretary.</h4>
+	</div>
+
+	<ul class="nav-list">
+		<li>Signed in as: {{navCtrl.currentUser.email}}</li>
+		<li ng-click="navCtrl.backToProfile()">Profile</li>
+		<li ng-click="navCtrl.logout()">Logout</li>
+	</ul>
+</div>
