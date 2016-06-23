@@ -1,3 +1,29 @@
+<div class="modal fade">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title">Leave A Comment</h4>
+      </div>
+      <div class="modal-body">
+        <form>
+        	<div>
+        		<div class="form-group">
+        			<label for="email">Comment:</label>
+        			<input class="form-control" type="text" name="comment" ng-model="userComment" placeholder="Tastes great!">
+        		</div>
+        	</div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-warning button" type="button" ng-click="tapViewCtrl.comment(userComment)" data-dismiss="modal">Comment</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
 <div class="main-content under-nav">
 
 	<div class="brewsheet">
@@ -89,12 +115,20 @@
 		</div>
 
 		<div ng-show="tapViewCtrl.recipe.comments">
-			<h4>Comments:</h4>
+			<h4>Brewers Comments:</h4>
 			<p>{{tapViewCtrl.recipe.comments}}</p>
+			<h4>Community Comments:</h4>
+			<div
+				ng-if="tapViewCtrl.recipe.commComments"
+				class="form-control"
+				ng-repeat="comment in tapViewCtrl.recipe.commComments">
+				<h4 class="comment-headline">{{comment.comment}}</h4>
+				<h6 class="comment-user">From {{comment.user}}</h6>
+			</div>
 		</div>
 
 		<div>
-			<button class="btn btn-default button" type="button" ng-click="tapViewCtrl.commentRecipe()">Comment</button>
+			<button class="btn btn-default button" type="button" data-toggle="modal" data-target=".modal">Comment</button>
 		</div>
 	</div>
 

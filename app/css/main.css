@@ -135,6 +135,7 @@ VIEW STYLES
 	box-shadow: 0px 0px 5px 5px rgba(252,251,238,.9);
 }
 
+
 /********************
 
 NAV STYLES
@@ -179,4 +180,13 @@ NAV STYLES
 	margin-right: 20px;
 }
 
+/********************
 
+TAPVIEW STYLES
+
+********************/
+
+.comment-headline,
+.comment-user	{
+	margin: 0;
+}
