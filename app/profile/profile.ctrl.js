@@ -21,9 +21,9 @@ angular.module("app")
 				.set(null);
 		}
 
-		profileCtrl.logout = function () {
-			firebase.auth().signOut()
-				.then($location.path.bind($location, "/"))
-				.then($timeout)
-		}
+		// profileCtrl.logout = function () {
+		// 	firebase.auth().signOut()
+		// 		.then($location.path.bind($location, "/"))
+		// 		.then($timeout)
+		// }
 	})

@@ -1,161 +1,161 @@
-<h1>ADD RECIPE</h1>
-<button type="click" ng-click="addCtrl.backToProfile()">Back to profile</button>
-
 <div class="main-content">
-	<form ng-submit="addCtrl.addNew()">
+	<div class="brewsheet">
 
-		<div class="form-group">
-			<label>Name:</label>
-			<input class="form-control" type="text" ng-model="addCtrl.name">
-			<label>Description:</label>
-			<input class="form-control" type="text" ng-model="addCtrl.description">
-		</div>
-
-
-		<div class="section-one">
+		<form ng-submit="addCtrl.addNew()">
 
 			<div class="form-group">
-				<label>Style:</label>
-				<select
-					ng-model="addCtrl.style"
-					ng-options="s as s for s in addCtrl.stylesArray | orderBy: 'name'">
-				</select>
+				<label>Name:</label>
+				<input class="form-control" type="text" ng-model="addCtrl.name">
+				<label>Description:</label>
+				<input class="form-control" type="text" ng-model="addCtrl.description">
+			</div>
+
+
+			<div class="section-one">
+
+				<div class="form-group">
+					<label>Style:</label>
+					<select
+						ng-model="addCtrl.style"
+						ng-options="s as s for s in addCtrl.stylesArray | orderBy: 'name'">
+					</select>
+				</div>
+
+				<div class="form-group">
+					<label>Target OG:</label>
+					<input type="text" ng-model="addCtrl.targetOG">
+				</div>
+
+				<div class="form-group">
+					<label>Target FG:</label>
+					<input type="text" ng-model="addCtrl.targetFG">
+				</div>
+
+				<div class="form-group">
+					<label>Batch size:</label>
+					<input type="text" ng-model="addCtrl.batchSize">
+				</div>
+
+				<div class="form-group">
+					<label>Mash temp:</label>
+					<input type="text" ng-model="addCtrl.mashTemp">
+				</div>
+
+				<div class="form-group">
+					<label>Efficiency:</label>
+					<input type="text" ng-model="addCtrl.mashEff">
+				</div>
+			</div>
+
+
+			<div class="section-two">
+	<!--FERMENTABLES-->
+				<div>
+				<h4>Fermentables</h4>
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Grain</th>
+								<th>% of Grain Bill</th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="ferm in addCtrl.grainBill">
+								<td>
+									<select
+										ng-model="ferm.name"
+										ng-options="f as f for f in addCtrl.fermentablesArray">
+									</select>
+								</td>
+								<td>
+									<input type="text" ng-model="ferm.percent">
+								</td>
+								<td>
+									<div class="btn btn-default button" ng-click="addCtrl.deleteFerm(ferm)">Delete</div>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<div class="btn btn-default button" ng-click="addCtrl.addFermentable()">Add Grain</div>
+				</div>
+
+	<!--HOPS-->
+				<div>
+					<h4>Hops</h4>
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Hop</th>
+								<th>Oz.</th>
+								<th>AA%</th>
+								<th>Boil Time</th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="hop in addCtrl.hopsBill">
+								<td>
+									<select
+										ng-model="hop.name"
+										ng-options="h as h for h in addCtrl.hopsArray">
+									</select>
+								</td>
+								<td>
+									<input type="text" ng-model="hop.oz">
+								</td>
+								<td>
+									<input type="text" ng-model="hop.aa">
+								</td>
+								<td>
+									<select ng-model="hop.boil">
+										<option name="boil" value=60>60</option>
+										<option name="boil" value=55>55</option>
+										<option name="boil" value=50>50</option>
+										<option name="boil" value=45>45</option>
+										<option name="boil" value=40>40</option>
+										<option name="boil" value=35>35</option>
+										<option name="boil" value=30>30</option>
+										<option name="boil" value=25>25</option>
+										<option name="boil" value=20>20</option>
+										<option name="boil" value=15>15</option>
+										<option name="boil" value=10>10</option>
+										<option name="boil" value=5>5</option>
+										<option name="boil" value=0>0</option>
+									</select>
+								</td>
+								<td>
+									<div class="btn btn-default button" ng-click="addCtrl.deleteHop(hop)">Delete</div>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<div class="btn btn-default button" ng-click="addCtrl.addHops()">Add Hop</div>
+				</div>
+
+
+	<!--YEAST-->
+				<div>
+					<h4>Yeast:</h4>
+					<select ng-model="addCtrl.yeast" ng-options="y as y for y in addCtrl.yeastArray">
+					</select>
+					<input
+						type="checkbox"
+						ng-model="addCtrl.yeastStarter"
+						ng-true-value="'YES'"
+						ng-false-value="'NO'">Starter?
+				</div>
 			</div>
 
 			<div class="form-group">
-				<label>Target OG:</label>
-				<input type="text" ng-model="addCtrl.targetOG">
+				<h4>Comments:</h4>
+				<textarea class="form-control" ng-model="addCtrl.comments"></textarea>
 			</div>
 
-			<div class="form-group">
-				<label>Target FG:</label>
-				<input type="text" ng-model="addCtrl.targetFG">
-			</div>
-
-			<div class="form-group">
-				<label>Batch size:</label>
-				<input type="text" ng-model="addCtrl.batchSize">
-			</div>
-
-			<div class="form-group">
-				<label>Mash temp:</label>
-				<input type="text" ng-model="addCtrl.mashTemp">
-			</div>
-
-			<div class="form-group">
-				<label>Efficiency:</label>
-				<input type="text" ng-model="addCtrl.mashEff">
-			</div>
-		</div>
-
-
-		<div class="section-two">
-<!--FERMENTABLES-->
 			<div>
-			<h4>Fermentables</h4>
-				<table class="table">
-					<thead>
-						<tr>
-							<th>Grain</th>
-							<th>% of Grain Bill</th>
-							<th></th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr ng-repeat="ferm in addCtrl.grainBill">
-							<td>
-								<select
-									ng-model="ferm.name"
-									ng-options="f as f for f in addCtrl.fermentablesArray">
-								</select>
-							</td>
-							<td>
-								<input type="text" ng-model="ferm.percent">
-							</td>
-							<td>
-								<div class="btn btn-default" ng-click="addCtrl.deleteFerm(ferm)">Delete</div>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-				<div class="btn btn-default" ng-click="addCtrl.addFermentable()">Add Grain</div>
+				<button class="btn btn-default button" type="submit">Add</button>
+				<div class="btn btn-default button" ng-click="addCtrl.cancel()">Cancel</div>
 			</div>
-
-<!--HOPS-->
-			<div>
-				<h4>Hops</h4>
-				<table class="table">
-					<thead>
-						<tr>
-							<th>Hop</th>
-							<th>Oz.</th>
-							<th>AA%</th>
-							<th>Boil Time</th>
-							<th></th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr ng-repeat="hop in addCtrl.hopsBill">
-							<td>
-								<select
-									ng-model="hop.name"
-									ng-options="h as h for h in addCtrl.hopsArray">
-								</select>
-							</td>
-							<td>
-								<input type="text" ng-model="hop.oz">
-							</td>
-							<td>
-								<input type="text" ng-model="hop.aa">
-							</td>
-							<td>
-								<select ng-model="hop.boil">
-									<option name="boil" value=60>60</option>
-									<option name="boil" value=55>55</option>
-									<option name="boil" value=50>50</option>
-									<option name="boil" value=45>45</option>
-									<option name="boil" value=40>40</option>
-									<option name="boil" value=35>35</option>
-									<option name="boil" value=30>30</option>
-									<option name="boil" value=25>25</option>
-									<option name="boil" value=20>20</option>
-									<option name="boil" value=15>15</option>
-									<option name="boil" value=10>10</option>
-									<option name="boil" value=5>5</option>
-									<option name="boil" value=0>0</option>
-								</select>
-							</td>
-							<td>
-								<div class="btn btn-default" ng-click="addCtrl.deleteHop(hop)">Delete</div>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-				<div class="btn btn-default" ng-click="addCtrl.addHops()">Add Hop</div>
-			</div>
-
-
-<!--YEAST-->
-			<div>
-				<h4>Yeast:</h4>
-				<select ng-model="addCtrl.yeast" ng-options="y as y for y in addCtrl.yeastArray">
-				</select>
-				<input
-					type="checkbox"
-					ng-model="addCtrl.yeastStarter"
-					ng-true-value="'YES'"
-					ng-false-value="'NO'">Starter?
-			</div>
-		</div>
-
-		<div class="form-group">
-			<h4>Comments:</h4>
-			<textarea class="form-control" ng-model="addCtrl.comments"></textarea>
-		</div>
-
-		<div>
-			<button type="submit">Add</button>
-			<button type="button" ng-click="addCtrl.cancel()">Cancel</button>
-		</div>
-	</form>
+		</form>
+	</div>
 </div>
