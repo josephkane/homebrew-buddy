@@ -115,7 +115,7 @@
 
 		<div>
 			<h4 class="bold">Yeast:</h4>
-			<p>{{tapViewCtrl.recipe.yeast.name}} ({{tapViewCtrl.recipe.yeast.supplier}} {{tapViewCtrl.recipe.yeast.productId}})</p>
+			<p>{{tapViewCtrl.recipe.yeast.name}} <span ng-show="tapViewCtrl.recipe.yeast.supplier">({{tapViewCtrl.recipe.yeast.supplier}} {{tapViewCtrl.recipe.yeast.productId}})</span></p>
 			<p>Starter? <strong>{{tapViewCtrl.recipe.yeast.starter}}</strong></p>
 		</div>
 
@@ -129,7 +129,7 @@
 				class="comment-container"
 				ng-repeat="comment in tapViewCtrl.recipe.commComments">
 				<p class="comment-headline">{{comment.comment}}</p>
-				<p class="comment-user">From {{comment.user}}</p>
+				<p class="comment-user">From: {{comment.user}} {{comment.date}}</p>
 			</div>
 
 		<div>
