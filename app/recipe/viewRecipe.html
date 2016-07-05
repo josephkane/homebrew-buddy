@@ -3,6 +3,7 @@
 	<div class="brewsheet">
 		<div>
 			<h2 class="recipe-name">{{viewCtrl.recipe.name}}</h2>
+			<h5 class="bold" ng-show="viewCtrl.recipe.originalBrewer">Originally submitted by: <span class="normal">{{viewCtrl.recipe.originalBrewer}}</span></h5>
 			<h4>{{viewCtrl.recipe.description}}</h4>
 				<div class="utility-group">
 					<ul class="utility-info">

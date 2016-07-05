@@ -12,6 +12,13 @@ angular.module("app")
 				}
 				return $http
 					.post(`${FB_URL}/taproom/${id}/commComments.json?auth=${currentUser.auth}`, userComment)
+			},
+			forkRecipe (recipe) {
+				let currentUser = AuthFactory.currentUser();
+				recipe.originalBrewer = recipe.brewer;
+				recipe.brewer = null;
+				return $http
+					.post(`${FB_URL}/users/${currentUser.userId}/recipes.json?auth=${currentUser.auth}`, recipe)
 			}
 		};
 	})
