@@ -7,7 +7,8 @@ angular.module("app")
 				let currentUser = AuthFactory.currentUser();
 				let userComment = {
 					comment: comment,
-					user: currentUser.email
+					user: currentUser.email,
+					date: Date()
 				}
 				return $http
 					.post(`${FB_URL}/taproom/${id}/commComments.json?auth=${currentUser.auth}`, userComment)

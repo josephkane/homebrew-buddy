@@ -178,6 +178,10 @@ VIEW/TAPVIEW STYLES
 	width: 50%;
 }
 
+.center {
+	text-align: center;
+}
+
 /********************
 
 NAV STYLES
