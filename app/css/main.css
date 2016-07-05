@@ -21,10 +21,12 @@ a {
 }
 
 a:visited {
+	text-decoration: none;
 	color: #414D5C;
 }
 
 a:hover {
+	text-decoration: none;
 	color: #FCFBEE;
 }
 
@@ -38,6 +40,7 @@ a:hover {
 
 .button {
 	background-color: #414D5C;
+	border-color: #414D5C;
 	color: #F0EDDF;
 }
 
@@ -235,3 +238,87 @@ NAV STYLES
 	margin-right: 20px;
 }
 
+/********************
+
+MEDIA QUERIES
+
+********************/
+
+@media screen and (max-width: 848px) {
+	.nav-headline {
+		font-size: 30px;
+		margin-left: 20px;
+	}
+}
+
+@media screen and (max-width: 793px) {
+	.nav-list {
+		padding-left: 0;
+	}
+}
+
+@media screen and (max-width: 728px) {
+	.nav-bar {
+		flex-flow: column nowrap;
+	}
+	.headlines {
+		width: 100%;
+		text-align: center;
+		margin-bottom: 10px;
+	}
+	.nav-headline {
+		font-size: 36px;
+	}
+	.nav-list {
+		width: 100%;
+		justify-content: space-around;
+		margin-bottom: 2px;
+	}
+	.main-content {
+		width: 90%;
+	}
+	.under-nav {
+		margin-top: 150px;
+	}
+}
+
+@media screen and (max-width: 650px) {
+	.flex {
+		flex-flow: column nowrap;
+	}
+	.recipe-card {
+		width: 100%;
+	}
+}
+
+@media screen and (max-width: 415px) {
+	.signed-in {
+		display: none;
+	}
+	.nav-list {
+		flex-flow: column nowrap;
+		align-items: stretch;
+		text-align: center;
+	}
+	.nav-list li {
+		margin: 10px 0;
+	}
+	.nav-list li a {
+		border: 1px solid #414D5C;
+		background-color: #414D5C;
+		color: #F0EDDF;
+		padding: 3px 15px;
+		border-radius: 5px;
+	}
+	.nav-list li a:active {
+		color: #333;
+		background-color: #e6e6e6;
+		border-color: #adadad;
+	}
+	.nav-tagline {
+		margin-bottom: 0;
+	}
+	.under-nav {
+		margin-top: 245px;
+	}
+}
