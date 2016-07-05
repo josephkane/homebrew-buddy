@@ -5,7 +5,7 @@
 			<option value="name">Recipe Name</option>}
 			<option value="style">Beer Style</option>}
 		</select>
-		<input type="text" ng-model="userSearch">
+		<input class="search-box" type="text" ng-model="userSearch">
 	</div>
 	<div class="flex">
 		<div class="recipe-card" ng-repeat="(id, recipe) in profileCtrl.recipes | toArray | filter: {[searchCategory]: userSearch}">
