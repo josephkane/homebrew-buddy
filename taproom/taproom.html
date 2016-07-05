@@ -1,11 +1,19 @@
 <div class="main-content under-nav">
 	<h1 class="center">Taproom</h1>
+	<div class="search">
+		<label>Search by:</label>
+		<select ng-model="searchCategory">
+			<option value="name">Recipe Name</option>}
+			<option value="style">Beer Style</option>}
+		</select>
+		<input type="text" ng-model="userSearch">
+	</div>
 	<div class="flex">
-		<div class="recipe-card" ng-repeat="(id, recipe) in tapCtrl.recipes">
+		<div class="recipe-card" ng-repeat="(id, recipe) in tapCtrl.recipes | toArray | filter: {[searchCategory]: userSearch}">
 			<h4 class="card-headline">{{recipe.name}}</h4>
 			<p class="card-description">{{recipe.description}}</p>
 			<div class="card-buttons">
-				<button class="btn btn-default button" type="button" ng-click="tapCtrl.viewRecipe(id)">View</button>
+				<button class="btn btn-default button" type="button" ng-click="tapCtrl.viewRecipe(recipe.$key)">View</button>
 			</div>
 		</div>
 	</div>
