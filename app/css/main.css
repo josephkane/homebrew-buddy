@@ -6,6 +6,7 @@
 
 body {
 	background-color: #F0EDDF;
+	background-image: url("backgrounds/concrete-wall.png");
 	color: #414D5C;
 	font-family: 'PT Sans Narrow', sans-serif;
 	font-size: 1.6em;
@@ -61,8 +62,8 @@ LANDING STYLES
 .landing-headline	{
 	text-align: center;
 	border-radius: 10px;
-	background-color: #FCFBEE;
-	box-shadow: 0px 0px 5px 5px rgba(252,251,238,.9);
+	background-color: rgba(252, 251, 238, .5);
+	box-shadow: 0px 0px 5px 5px rgba(252, 251, 238, .5);
 }
 
 .landing-page {
@@ -87,7 +88,7 @@ PROFILE/TAPROOM STYLES
 	width: 190px;
 	height: 190px;
 	margin: 15px 0;
-	background-color: #FCFBEE;
+	background-color: rgba(252, 251, 239, .7);
 	border-radius: 5px;
 	box-shadow: -5px 5px 5px #CFCFC7;
 }
@@ -95,7 +96,7 @@ PROFILE/TAPROOM STYLES
 .card-headline {
 	font-size: 1.5em;
 	width: 100%;
-	background-color: #BFBEB4;
+	background-color: rgba(191, 190, 180, .7);
 	text-align: center;
 	border-bottom: 1px solid slategrey;
 	margin-top: 0;
@@ -160,11 +161,11 @@ VIEW/TAPVIEW STYLES
 }
 
 .brewsheet {
-	background-color: #FCFBEE;
+	background-color: rgba(252, 251, 239, .7);
 	padding: 5px 15px;
 	margin-bottom: 20px;
 	border-radius: 5px;
-	box-shadow: 0px 0px 5px 5px rgba(252,251,238,.9);
+	box-shadow: 0px 0px 5px 5px rgba(252, 251, 239, .7);
 }
 
 .comment-container {
@@ -218,7 +219,7 @@ NAV STYLES
 	border-bottom: 1px solid slategrey;
 	width: 100%;
 	justify-content: space-between;
-	background-color: #BFBEB4;
+	background-color: rgba(191, 190, 180, .7);
 }
 
 .headlines {
