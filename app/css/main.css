@@ -71,7 +71,7 @@ LANDING STYLES
 
 /********************
 
-PROFILE STYLES
+PROFILE/TAPROOM STYLES
 
 ********************/
 
@@ -124,6 +124,22 @@ PROFILE STYLES
 
 .add-recipe-button {
 	padding: 10px 100px;
+}
+
+.search {
+	text-align: center;
+}
+
+.search-box {
+	border-radius: 3px;
+	border: solid 1px #dcdcdc;
+  transition: box-shadow 0.3s, border 0.3s;
+}
+
+.search-box:focus {
+	outline: none;
+	border: solid 1px #707070;
+	box-shadow: 0 0 5px 1px #969696;
 }
 
 /********************
@@ -278,7 +294,7 @@ MEDIA QUERIES
 		width: 90%;
 	}
 	.under-nav {
-		margin-top: 150px;
+		margin: 150px auto;
 	}
 }
 
@@ -288,6 +304,12 @@ MEDIA QUERIES
 	}
 	.recipe-card {
 		width: 100%;
+	}
+	.nav-bar {
+		position: static;
+	}
+	.under-nav {
+		margin: 20px auto;
 	}
 }
 
@@ -317,8 +339,5 @@ MEDIA QUERIES
 	}
 	.nav-tagline {
 		margin-bottom: 0;
-	}
-	.under-nav {
-		margin-top: 245px;
 	}
 }
