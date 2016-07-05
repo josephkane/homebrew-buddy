@@ -126,7 +126,8 @@ PROFILE/TAPROOM STYLES
 	padding: 10px 100px;
 }
 
-.search {
+.search,
+.order {
 	text-align: center;
 }
 
