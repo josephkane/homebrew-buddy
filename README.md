@@ -33,6 +33,6 @@ Fill out the hop bill much the same as the grain. It would be best to know the A
 
 When a recipe has been dialed in to perfection, its time to share! From the recipe view page, scroll to the bottom and click "Tap!" This will add the recipe to the Taproom, a virtual public house where homebrewers can share and discuss their favorite recipes. If a recipe looks intriguing, scroll to the bottom of the view and click "Fork." This will add that recipe to the current users profile, where they can brew/tweak as they would a recipe of thier own.
 
-![taproom](rm_img/taproom.png)
+![taproom](rm_img/tap.png)
 
 Thanks so much for checking out Homebrew Buddy, we hope you enjoy and make great beer!
