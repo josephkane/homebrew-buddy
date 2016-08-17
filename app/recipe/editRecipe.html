@@ -1,11 +1,12 @@
 <div class="main-content under-nav">
 	<div class="brewsheet">
 
-		<form ng-submit="editCtrl.updateRecipe()">
+		<form name="editForm" ng-submit="editCtrl.updateRecipe()">
 
 			<div class="form-group">
-				<label>Name:</label>
-				<input class="form-control" type="text" ng-model="editCtrl.recipe.name">
+				<label class="required">Name:</label>
+				<input class="form-control" name="name" type="text" ng-model="editCtrl.recipe.name" required>
+				<p ng-show="editForm.name.$invalid && !editForm.name.$pristine" class="help-block">A name is required.</p>
 				<label>Description:</label>
 				<input class="form-control" type="text" ng-model="editCtrl.recipe.description">
 			</div>
@@ -22,8 +23,9 @@
 				</div>
 
 				<div class="form-group">
-					<label>Target OG:</label>
-					<input type="text" ng-model="editCtrl.recipe.targetOG">
+					<label class="required">Target OG:</label>
+					<input name="targetOG" type="text" ng-model="editCtrl.recipe.targetOG" required>
+					<p ng-show="editForm.targetOG.$invalid && !editForm.targetOG.$pristine" class="help-block">A target OG is required.</p>
 				</div>
 
 				<div class="form-group">
@@ -32,8 +34,9 @@
 				</div>
 
 				<div class="form-group">
-					<label>Batch size:</label>
-					<input type="text" ng-model="editCtrl.recipe.batchSize">
+					<label class="required">Batch size:</label>
+					<input name="batchSize" type="text" ng-model="editCtrl.recipe.batchSize" required>
+					<p ng-show="editForm.batchSize.$invalid && !editForm.batchSize.$pristine" class="help-block">A batch size is required.</p>
 				</div>
 
 				<div class="form-group">
@@ -42,8 +45,9 @@
 				</div>
 
 				<div class="form-group">
-					<label>Efficiency:</label>
-					<input type="text" ng-model="editCtrl.recipe.mashEff">
+					<label class="required">Efficiency:</label>
+					<input name="efficiency" type="text" ng-model="editCtrl.recipe.mashEff" required>
+					<p ng-show="editForm.efficiency.$invalid && !editForm.efficiency.$pristine" class="help-block">Efficiency is required.</p>
 				</div>
 			</div>
 
@@ -157,8 +161,11 @@
 			</div>
 
 			<div>
-				<button class="btn btn-default button" type="submit">Save</button>
+				<button class="btn btn-default button" type="submit" ng-disabled="editForm.$invalid">Save</button>
 				<div class="btn btn-default button" ng-click="editCtrl.cancel()">Cancel</div>
+			</div>
+			<div>
+				<h6><em>Underlined items are required</em></h6>
 			</div>
 		</form>
 	</div>
