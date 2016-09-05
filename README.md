@@ -4,11 +4,9 @@
 Homebrew Buddy is an app that is designed to calculate and store homebrewing recipes. You can also share, discuss, and copy other users favorite recipes.
 
 ##### Installation
-To get started, you must first install the dependencies. Homebrew Buddy uses [AngularJS](https://github.com/angular/angular.js), [Firebase](https://firebase.google.com/), [Bootstrap](https://github.com/twbs/bootstrap), [Angular Filter](https://github.com/a8m/angular-filter), [Angular Route](https://github.com/angular/bower-angular-route), and [Angular toArray Filter](https://github.com/petebacondarwin/angular-toArrayFilter), as well as various [Gulp](https://github.com/gulpjs/gulp) tasks. Feel free to install with your favorite package manager (or CDN) or simply type the following prompts in your command line:
+To get started, you must first install the dependencies. Homebrew Buddy uses [AngularJS](https://github.com/angular/angular.js), [Firebase](https://firebase.google.com/), [Bootstrap](https://github.com/twbs/bootstrap), [Angular Filter](https://github.com/a8m/angular-filter), [Angular Route](https://github.com/angular/bower-angular-route), and [Angular toArray Filter](https://github.com/petebacondarwin/angular-toArrayFilter). Feel free to install with your favorite package manager (or CDN) or simply type the following prompts in your command line:
 
 ```$ bower install --save```
-
-```$ npm install --save-dev```
 
 ##### Getting started
 Homebrew Buddy is designed for the novice all-grain brewer that wants to start building his/her own recipes. Upon log-in, you will be taken to your profile page where you can view/delete previous recipes you have created, as well as add a new one. You can also search your recipes by name or style. Every recipe is completely modifiable, with a comments section for brew session/tasting notes.
@@ -36,3 +34,5 @@ When a recipe has been dialed in to perfection, its time to share! From the reci
 ![taproom](rm_img/tap.png)
 
 Thanks so much for checking out Homebrew Buddy, we hope you enjoy and make great beer!
+
+> One quick note: Homebrew Buddy makes use of ES6 syntax throughout, which is not yet supported in all browsers. For best results, open and use the app in Chrome 52 or higher.
