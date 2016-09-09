@@ -129,8 +129,9 @@ angular.module("app")
 
 		return {
 			styles () {
+				let currentUser = AuthFactory.currentUser();
 				return $http
-					.get("http://api.brewerydb.com/v2/styles/?key=47e0d3ca6616a3f10fa45c87f1787825")
+					.get(`${FB_URL}/styles.json?auth=${currentUser.auth}`)
 						.then(res => {
 							styles = res.data;
 							return styles;
@@ -164,8 +165,9 @@ angular.module("app")
 				return hops;
 			},
 			yeast () {
+				let currentUser = AuthFactory.currentUser();
 				return $http
-					.get("http://api.brewerydb.com/v2/yeasts/?key=47e0d3ca6616a3f10fa45c87f1787825")
+					.get(`${FB_URL}/yeast.json?auth=${currentUser.auth}`)
 						.then(res => {
 							yeast = res.data;
 							return yeast;
