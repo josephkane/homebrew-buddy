@@ -4,6 +4,8 @@ const gulp = require("gulp");
 const babel = require("gulp-babel")
 const sourcemaps = require("gulp-sourcemaps")
 const concat = require("gulp-concat")
+const uglify = require("gulp-uglify")
+const rename = require("gulp-rename")
 const jsFiles = [
 	"main.js",
 	"auth/auth.config.js",
@@ -42,6 +44,9 @@ gulp.task("compilejs", function () {
     .pipe(babel())
     .pipe(concat("all.js"))
     .pipe(sourcemaps.write("./"))
+    // .pipe(gulp.dest("docs"))
+    // .pipe(rename("all.min.js"))
+    // .pipe(uglify())
     .pipe(gulp.dest("docs"));
 });
 
