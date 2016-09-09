@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>Homebrew Buddy</title>
+		<link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.min.css">
+		<link rel="stylesheet" href="css/main.css">
+		<meta name="viewport" content="width=device-width,initial-scale=1">
+	</head>
+	<body>
+		<div ng-app="app">
+			<div ng-include="'nav/nav.html'" ng-controller="NavControl as navCtrl" ng-show="navCtrl.currentUser"></div>
+			<div ng-view></div>
+		</div>
+
+		<script src="all.js"></script>
+		<!-- <script src="lib/angular/angular.min.js"></script>
+		<script src="lib/angular-toArrayFilter/toArrayFilter.js"></script>
+		<script src="lib/angular-bootstrap/ui-bootstrap.min.js"></script>
+		<script src="lib/angular-filter/dist/angular-filter.min.js"></script>
+		<script src="lib/angular-route/angular-route.min.js"></script>
+		<script src="lib/jquery/dist/jquery.min.js"></script>
+		<script src="lib/bootstrap/dist/js/bootstrap.min.js"></script>
+		<script src="lib/firebase/firebase.js"></script>
+		<script src="main.js"></script>
+		<script src="nav/nav.ctrl.js"></script>
+		<script src="nav/nav.factory.js"></script>
+		<script src="auth/auth.config.js"></script>
+		<script src="auth/auth.ctrl.js"></script>
+		<script src="auth/auth.factory.js"></script>
+		<script src="profile/profile.config.js"></script>
+		<script src="profile/profile.ctrl.js"></script>
+		<script src="profile/profile.factory.js"></script>
+		<script src="recipe/recipe.factory.js"></script>
+		<script src="recipe/addRecipe.config.js"></script>
+		<script src="recipe/addRecipe.ctrl.js"></script>
+		<script src="recipe/viewRecipe.config.js"></script>
+		<script src="recipe/viewRecipe.factory.js"></script>
+		<script src="recipe/viewRecipe.ctrl.js"></script>
+		<script src="recipe/editRecipe.config.js"></script>
+		<script src="recipe/editRecipe.ctrl.js"></script>
+		<script src="taproom/taproom.config.js"></script>
+		<script src="taproom/taproom.ctrl.js"></script>
+		<script src="taproom/taproom.factory.js"></script>
+		<script src="taproom/tapView.ctrl.js"></script> -->
+	</body>
+</html>

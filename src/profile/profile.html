@@ -1,0 +1,23 @@
+<div class="main-content under-nav">
+	<div class="search">
+		<label>Search by:</label>
+		<select ng-model="searchCategory">
+			<option value="name">Recipe Name</option>}
+			<option value="style">Beer Style</option>}
+		</select>
+		<input class="search-box" type="text" ng-model="userSearch">
+	</div>
+	<div class="flex">
+		<div class="recipe-card" ng-repeat="(id, recipe) in profileCtrl.recipes | toArray | filter: {[searchCategory]: userSearch}">
+			<h4 class="card-headline">{{recipe.name}}</h4>
+			<p class="card-description">{{recipe.description}}</p>
+			<div class="card-buttons">
+				<button class="btn btn-default button" type="button" ng-click="profileCtrl.viewRecipe(recipe.$key, recipe)">View</button>
+				<button class="btn btn-default button" type="button" ng-click="profileCtrl.deleteRecipe(recipe.$key)">Delete</button>
+			</div>
+		</div>
+	</div>
+	<div class="add-recipe">
+		<button class="btn btn-default button add-recipe-button" type="click" ng-click="profileCtrl.newRecipe()">Add recipe</button>
+	</div>
+</div>

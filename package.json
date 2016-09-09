@@ -1,0 +1,28 @@
+{
+  "name": "homebrew-buddy",
+  "version": "1.0.0",
+  "description": "Homebrew Buddy is an app that is designed to calculate and store homebrewing recipes. You can also share, discuss, and copy other users favorite recipes.",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/josephkane/homebrew-buddy.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/josephkane/homebrew-buddy/issues"
+  },
+  "homepage": "https://github.com/josephkane/homebrew-buddy#readme",
+  "devDependencies": {
+    "babel-cli": "^6.14.0",
+    "babel-preset-es2015": "^6.14.0",
+    "gulp": "^3.9.1",
+    "gulp-babel": "^6.1.2",
+    "gulp-concat": "^2.6.0",
+    "gulp-sourcemap": "^1.0.1",
+    "uglify-js": "^2.7.3"
+  }
+}

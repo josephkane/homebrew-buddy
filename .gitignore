@@ -1,5 +1,5 @@
 .DS_Store
-app/lib
+src/lib
 node_modules
 gulpfile.js
 fermentables.json
@@ -7,3 +7,4 @@ hops.json
 srm.json
 yeast.json
 styles.json
+src/css/backgrounds
