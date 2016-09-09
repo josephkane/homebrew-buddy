@@ -57,26 +57,26 @@
 	<!--FERMENTABLES-->
 			<div>
 				<h4>Fermentables:</h4>
-				<table class="table">
+				<table class="table mqTable">
 					<thead>
 						<tr>
-							<th>Grain</th>
-							<th>% of Grain Bill</th>
-							<th></th>
+							<th class="tHeader">Grain</th>
+							<th class="tHeader">% of Grain Bill</th>
+							<th class="tHeader"></th>
 						</tr>
 					</thead>
 					<tbody>
 						<tr ng-repeat="ferm in editCtrl.recipe.grainBill">
-							<td>
+							<td class="tData">
 								<select
 									ng-model="ferm.name"
 									ng-options="f as f for f in editCtrl.fermentablesArray">
 								</select>
 							</td>
-							<td>
+							<td class="tData">
 								<input type="text" ng-model="ferm.percent">
 							</td>
-							<td>
+							<td class="tData">
 								<div class="btn btn-default button" ng-click="editCtrl.deleteFerm(ferm)">Delete</div>
 							</td>
 						</tr>

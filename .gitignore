@@ -5,3 +5,5 @@ gulpfile.js
 fermentables.json
 hops.json
 srm.json
+yeast.json
+styles.json
