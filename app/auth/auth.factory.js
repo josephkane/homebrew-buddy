@@ -41,14 +41,6 @@ angular.module("app")
 					.catch((error) => (console.log(error)));
 			},
 
-			// register (email, password) {
-			// 	firebase.auth().createUserWithEmailAndPassword(email, password)
-			// 		.then(data => ($http.post(`${FB_URL}/users/${data.uid}.json?auth=${token}`, {
-			// 			userId: data.uid,
-			// 			email: data.email
-			// 		})))
-			// 		.catch((error) => (console.log(error)));
-
 			currentUser () {
 				return {
 					userId: userId,
