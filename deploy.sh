@@ -1,7 +1,7 @@
 #! /bin/sh
 git checkout -b gh-temp
 # gulp build
-echo '!app' >> .gitignore
+echo '!app/lib' >> .gitignore
 git add -A
 git commit -m "lib for gh-pages"
 git subtree split --prefix app -b gh-pages
