@@ -6,6 +6,7 @@ angular.module("app")
 		let token;
 
 		firebase.auth().onAuthStateChanged((user) => {
+			console.log("auth state");
 			if (user) {
 				userId = user.uid;
 				userEmail = user.email;
@@ -25,13 +26,28 @@ angular.module("app")
 
 			register (email, password) {
 				firebase.auth().createUserWithEmailAndPassword(email, password)
-					.then(data => ($http.put(`${FB_URL}/users/${data.uid}.json?auth=${data.Wc}`, {
-						userId: data.uid,
-						email: data.email
-					})))
-					.catch((error) => (alert(error.message)));
+					.then(data => {
+						userId = data.uid;
+						email = data.email;
+						data.getToken()
+							.then((t) => {
+								$http.post(`${FB_URL}/users/${userId}.json?auth=${t}`, {
+									userId: userId,
+									email: email
+								});
+							})
+					})
 
+					.catch((error) => (console.log(error)));
 			},
+
+			// register (email, password) {
+			// 	firebase.auth().createUserWithEmailAndPassword(email, password)
+			// 		.then(data => ($http.post(`${FB_URL}/users/${data.uid}.json?auth=${token}`, {
+			// 			userId: data.uid,
+			// 			email: data.email
+			// 		})))
+			// 		.catch((error) => (console.log(error)));
 
 			currentUser () {
 				return {
