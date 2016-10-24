@@ -39,7 +39,7 @@ angular.module("app")
 			let currentUser = AuthFactory.currentUser();
 			let recipe = {
 				uid: currentUser.userId,
-				brewer: currentUser.email,
+				originalBrewer: editCtrl.recipe.originalBrewer,
 				name: editCtrl.recipe.name,
 				description: editCtrl.recipe.description,
 				style: editCtrl.recipe.style,
