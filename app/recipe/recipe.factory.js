@@ -122,8 +122,6 @@ angular.module("app")
 				}
 			}
 
-			console.log("recipe: ", recipe);
-
 			return recipe;
 		}
 
