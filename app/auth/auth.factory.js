@@ -6,7 +6,6 @@ angular.module("app")
 		let token;
 
 		firebase.auth().onAuthStateChanged((user) => {
-			console.log("auth state");
 			if (user) {
 				userId = user.uid;
 				userEmail = user.email;
