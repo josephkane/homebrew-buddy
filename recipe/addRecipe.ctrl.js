@@ -50,6 +50,7 @@ angular.module("app")
 				},
 				comments: addCtrl.comments
 			};
+			console.log("recipe: ", recipe);
 
 			RecipeFactory.addNewRecipe(recipe)
 				.then($location.path.bind($location, `/profile/${currentUser.userId}`))
