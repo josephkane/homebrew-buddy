@@ -101,8 +101,15 @@ angular.module("app")
 			recipe.totalIBU = Math.round(totalIBU);
 
 			for (let key in recipe.grainBill) {
+				let mashEff;
 				let gravityNeeded = ((recipe.grainBill[key].percent / 100) * totalGravityUnits);
-				grainInLbs = (gravityNeeded / ((recipe.grainBill[key].potential - 1) * 1000) / (recipe.mashEff / 100));
+				if (recipe.grainBill[key].mashed === "YES") {
+					mashEff = recipe.mashEff
+				} else {
+					mashEff = 100
+				}
+				console.log("mashEff: ", mashEff);
+				grainInLbs = (gravityNeeded / ((recipe.grainBill[key].potential - 1) * 1000) / (mashEff / 100));
 				recipe.grainBill[key].grainInLbs = Math.round((grainInLbs + 0.00001) * 100) / 100;
 			}
 
