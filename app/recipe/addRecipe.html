@@ -61,6 +61,7 @@
 							<tr>
 								<th>Grain</th>
 								<th>% of Grain Bill</th>
+								<th>Add in...</th>
 								<th></th>
 							</tr>
 						</thead>
@@ -74,6 +75,12 @@
 								</td>
 								<td>
 									<input type="text" ng-model="ferm.percent">
+								</td>
+								<td>
+									<select ng-model="ferm.mashed">
+										<option ng-value="'YES'">Mash tun</option>
+										<option ng-value="'NO'">Boil/fermenter</option>
+									</select>
 								</td>
 								<td>
 									<div class="btn btn-default button" ng-click="addCtrl.deleteFerm(ferm)">Delete</div>
