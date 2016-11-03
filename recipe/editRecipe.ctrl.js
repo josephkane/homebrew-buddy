@@ -56,6 +56,8 @@ angular.module("app")
 				comments: editCtrl.recipe.comments
 			};
 
+			console.log("recipe: ", recipe);
+
 			RecipeFactory.updateRecipe($routeParams.id, recipe)
 				.then($location.path.bind($location, `/profile/${currentUser.userId}`))
 				.then($timeout);
